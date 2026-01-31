@@ -1,14 +1,14 @@
 
 import React, { useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import BentoFeatures from './components/BentoFeatures';
-import About from './components/About';
-import Testimonials from './components/Testimonials';
-import Pricing from './components/Pricing';
-import FeatureStats from './components/FeatureStats';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Navbar from './src/components/layout/Navbar';
+import Footer from './src/components/layout/Footer';
+import Hero from './src/components/sections/Hero';
+import BentoFeatures from './src/components/sections/BentoFeatures';
+import About from './src/components/sections/About';
+import Testimonials from './src/components/sections/Testimonials';
+import Pricing from './src/components/sections/Pricing';
+import FeatureStats from './src/components/sections/FeatureStats';
+import Contact from './src/components/sections/Contact';
 
 const App: React.FC = () => {
   useEffect(() => {
