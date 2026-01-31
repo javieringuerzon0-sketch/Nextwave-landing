@@ -1,0 +1,174 @@
+<div class="sm:px-6 lg:px-8 [animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll max-w-7xl mr-auto ml-auto pr-4 pl-4">
+        <div class="overflow-hidden xl:bg-neutral-950/60 border border-white/20 border-dashed rounded-none mt-6 relative">
+          <!-- Background (Unicorn Studio) -->
+
+          <!-- Radial beams / grid overlay -->
+          <div class="pointer-events-none absolute inset-0">
+            <div class="absolute inset-0 opacity-70 [mask-image:radial-gradient(65%_65%_at_50%_50%,black,transparent)] bg-[radial-gradient(1200px_400px_at_50%_-10%,rgba(16,185,129,0.25),transparent),radial-gradient(1200px_600px_at_50%_120%,rgba(59,130,246,0.2),transparent)]"></div>
+            <div class="absolute inset-0 opacity-[0.18] [mask-image:radial-gradient(80%_80%_at_50%_50%,black,transparent)] bg-[linear-gradient(to_right,rgba(255,255,255,.7)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.7)_1px,transparent_1px)] bg-[size:28px_28px]"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black"></div>
+          </div>
+
+          <!-- Floating utility icon -->
+          <div class="absolute left-5 top-5" style="visibility: hidden;">
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-sky-500/20 ring-1 ring-sky-400/30 backdrop-blur">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="refresh-cw" class="lucide lucide-refresh-cw h-5 w-5 text-sky-300"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" class=""></path><path d="M21 3v5h-5" class=""></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" class=""></path><path d="M8 16H3v5" class=""></path></svg>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="flex min-h-[68vh] flex-col sm:py-28 md:min-h-[76vh] md:pl-8 md:pr-8 md:pt-16 md:pb-8 text-left mr-auto ml-auto pt-16 pr-8 pb-8 pl-8 relative justify-center">
+            <!-- Section Header -->
+            <div class="[animation:fadeSlideIn_0.8s_ease-out_0.1s_both] animate-on-scroll text-left max-w-3xl mb-16">
+              <div class="inline-flex text-[13px] font-medium text-emerald-300 rounded-none ring-0 mb-6 pt-1.5 pr-3.5 pb-1.5 pl-3.5 gap-x-2 gap-y-2 items-center">
+                <span class="tabular-nums text-2xl font-light text-emerald-300/80">
+                  04
+                </span>
+                <span class="text-emerald-300/40">/</span>
+                <span class="uppercase text-[11px] text-emerald-200/90 tracking-widest">
+                  TESTIMONIAL
+                </span>
+              </div>
+              <h2 class="text-3xl sm:text-4xl lg:text-5xl font-geist font-light tracking-tight text-white mb-4">
+                Deploy in three simple steps
+              </h2>
+              <p class="text-base sm:text-lg text-zinc-400 leading-relaxed">
+                From code to production in seconds. Our streamlined workflow
+                makes deployment effortless.
+              </p>
+            </div>
+
+            <!-- Steps Grid -->
+            <div class="w-full">
+              <!-- Top feature testimonial -->
+              <div class="grid lg:grid-cols-2 lg:gap-y-8 lg:gap-x-6 gap-x-6 gap-y-8 items-stretch">
+                <!-- Photo panel -->
+                <div class="overflow-hidden min-h-[320px] [animation:fadeSlideIn_0.8s_ease-out_0.2s_both] animate-on-scroll bg-white/5 rounded-none ring-white/10 ring-1 relative">
+                  <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/c92852bb-a510-405a-85ab-ffa0fde136a4_1600w.jpg" alt="Customer portrait" class="opacity-100 w-full h-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/60 to-transparent mix-blend-multiply" style="visibility: hidden;"></div>
+                  <div class="absolute inset-0 opacity-40 bg-[linear-gradient(to_right,rgba(255,255,255,.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.18)_1px,transparent_1px)] bg-[size:10px_10px]" style="visibility: hidden;"></div>
+                  <div class="bg-gradient-to-b from-black/20 via-transparent to-black/60 absolute top-0 right-0 bottom-0 left-0" style="visibility: hidden;"></div>
+                </div>
+
+                <!-- Quote panel -->
+                <div class="flex flex-col sm:p-10 sm:bg-neutral-950 [animation:fadeSlideIn_0.8s_ease-out_0.3s_both] animate-on-scroll text-left bg-black/40 rounded-none ring-white/10 ring-1 pt-8 pr-8 pb-8 pl-8 relative justify-center">
+                  <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-quote text-emerald-400">
+                      <path d="M3 21c3 0 7-2 7-7V4H3v10" class=""></path>
+                      <path d="M14 21c3 0 7-2 7-7V4h-7v10" class=""></path>
+                    </svg>
+                  </div>
+                  <p class="text-white font-geist tracking-tight text-2xl sm:text-3xl lg:text-4xl leading-snug">
+                    "We saved on hosting and boosted conversions just by running
+                    Pulse."
+                  </p>
+                  <div class="mt-8">
+                    <div class="text-white text-base font-medium">
+                      Tom Sullivan
+                    </div>
+                    <div class="text-zinc-400 text-sm mt-1">Agency Lead</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Grid of small testimonials -->
+              <div class="grid lg:grid-cols-3 [animation:fadeSlideIn_0.8s_ease-out_0.4s_both] animate-on-scroll mt-6 relative gap-x-6 gap-y-6" style="min-height: 240px;">
+                <style>
+                  @keyframes smoothSlideInUp {
+                    0% {
+                      opacity: 0;
+                      transform: translateY(40px);
+                    }
+                    20% {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                    80% {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                    100% {
+                      opacity: 0;
+                      transform: translateY(-40px);
+                    }
+                  }
+                </style>
+
+                <!-- Card 1 -->
+                <div class="flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between overflow-hidden relative">
+                  <div style="animation: smoothSlideInUp 6s ease-in-out 0s infinite;" class="">
+                    <p class="text-zinc-300 text-base leading-relaxed">
+                      "Switching to Pulse was a game-changer. Our deployment
+                      time dropped from hours to seconds, and the developer
+                      experience is incredible."
+                    </p>
+                    <div class="flex items-center gap-3 mt-6">
+                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/3e3e1091-f8e8-4022-a02a-fa37a35c59a5_320w.jpg" alt="Michael Chen avatar" class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10">
+                      <div>
+                        <div class="text-white text-sm font-medium">
+                          Michael Chen
+                        </div>
+                        <div class="text-zinc-500 text-xs">CTO @ TechFlow</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between overflow-hidden relative">
+                  <div style="animation: smoothSlideInUp 6s ease-in-out 1s infinite;" class="">
+                    <p class="leading-relaxed text-base text-zinc-300">
+                      "The automatic scaling and zero-config SSL saved us
+                      countless hours. Our team can now focus on building
+                      features instead of managing infrastructure."
+                    </p>
+                    <div class="flex gap-3 mt-6 gap-x-3 gap-y-3 items-center">
+                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/7d4bf47a-eb10-4503-a4f3-1940c4118868_320w.webp" alt="Emily Roberts avatar" class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10">
+                      <div class="">
+                        <div class="text-white text-sm font-medium">
+                          Emily Roberts
+                        </div>
+                        <div class="text-zinc-500 text-xs">
+                          Lead Engineer @ DataSync
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="flex flex-col xl:bg-neutral-950 text-left bg-white/5 rounded-none ring-white/10 ring-1 pt-6 pr-6 pb-6 pl-6 justify-between overflow-hidden relative">
+                  <div style="animation: smoothSlideInUp 6s ease-in-out 2s infinite;" class="">
+                    <p class="text-zinc-300 text-base leading-relaxed">
+                      "We migrated 50+ client projects to Pulse. The performance
+                      improvements were immediate, and our clients noticed the
+                      difference right away."
+                    </p>
+                    <div class="flex items-center gap-3 mt-6">
+                      <img src="https://hoirqrkdgbmvpwutwuwj-all.supabase.co/storage/v1/object/public/assets/assets/a44deb57-f322-4fc8-9184-d05e21080cb2_320w.jpg" alt="David Park avatar" class="h-8 w-8 rounded-none object-cover ring-1 ring-white/10" style="">
+                      <div class="">
+                        <div class="text-white text-sm font-medium">
+                          David Park
+                        </div>
+                        <div class="text-zinc-500 text-xs">
+                          Creative Director @ Studio X
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary actions for small screens -->
+        <div class="flex md:hidden mt-4 items-center justify-between" style="display: none;">
+          <button class="rounded-xl bg-white/5 px-4 py-2 text-sm text-zinc-200 ring-1 ring-white/10">
+            Contact
+          </button>
+          <button class="rounded-xl bg-white px-4 py-2 text-sm text-black ring-1 ring-black/10">
+            Join waitlist
+          </button>
+        </div>
+      </div>

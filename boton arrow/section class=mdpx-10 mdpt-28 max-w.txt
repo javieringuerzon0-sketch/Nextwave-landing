@@ -1,0 +1,16 @@
+<a href="#contact"
+    class="relative inline-flex items-center justify-center gap-2 overflow-hidden shadow-[0_0_0_1px_rgba(56,189,248,0.25),inset_0_0_0_1px_rgba(255,255,255,0.08)] transition-all duration-300 hover:ring-sky-400/60 hover:shadow-[0_0_0_1px_rgba(56,189,248,0.35),0_40px_80px_rgba(56,189,248,0.18)] text-base font-semibold text-white tracking-tight bg-sky-500/5 ring-sky-400/30 ring-1 rounded-full pt-3 pr-6 pb-3 pl-6"
+    style="z-index:2;">
+    <span class="relative z-[1]">Get started</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right"
+        class="lucide lucide-arrow-right relative z-[1] w-4 h-4 text-sky-100" data-icon-replaced="true"
+        style="color: rgb(224, 242, 254);">
+        <path d="M5 12h14" class=""></path>
+        <path d="m12 5 7 7-7 7" class=""></path>
+    </svg>
+    <span aria-hidden="true" class="pointer-events-none absolute inset-0 rounded-full" style="box-shadow: 0 0 0 1px rgba(56,189,248,0.45), 0 18px 60px rgba(56,189,248,0.25); background: radial-gradient(140% 160% at 50% -20%, rgba(56,189,248,0.22) 0%, rgba(,189,248,0.08) 35%, rgba(56,189,248,0.00) 60%);"></span>
+    <span aria-hidden="true" class="pointer-events-none absolute inset-[1px] rounded-full" style="background:
+        radial-gradient(120% 80% at 50% -20%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0.06) 55%, rgba(255,255,255,0) 60%),
+        radial-gradient(90% 80% at 50% 120%, rgba(56,189,248,0.18) 0%, rgba(56,189,248,0) 60%);"></span>
+</a>
