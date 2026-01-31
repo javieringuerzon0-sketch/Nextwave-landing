@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NextWave IA - Nebula</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+  <!-- Tailwind CSS CDN - TEMPORALMENTE COMENTADO (usar local ahora) -->
+  <!-- Si hay problemas visuales, descomentar temporalmente -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <!-- <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -18,126 +20,16 @@
         }
       }
     }
-  </script>
+  </script> -->
 
+  <!-- Fuentes de Google - Mantenidas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Orbitron:wght@400;700&family=Pacifico&family=Bebas+Neue&family=Montserrat:wght@800&family=Caveat:wght@700&display=swap"
     rel="stylesheet">
 
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      margin: 0;
-      font-family: 'Manrope', sans-serif;
-      overflow-x: hidden;
-      backface-visibility: hidden;
-      /* Aceleración hardware */
-    }
-
-    /* GLASS CARD ULTRA-OPTIMIZADO */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      transform: translateZ(0);
-    }
-
-    /* BORDER GRADIENT */
-    .border-gradient {
-      position: relative;
-    }
-
-    .border-gradient::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      padding: 1px;
-      background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.15), transparent, rgba(255, 255, 255, 0.05));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    @keyframes fadeSlideIn {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes bounce-slow {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .animate-slideUp {
-      animation: slideUp 0.4s ease-out forwards;
-    }
-
-    .animate-bounce-slow {
-      animation: bounce-slow 4s ease-in-out infinite;
-    }
-
-    .animate-on-scroll {
-      opacity: 0;
-    }
-
-    .animate-on-scroll.animate {
-      animation: fadeSlideIn 0.8s ease-out forwards;
-    }
-
-    @keyframes marquee {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .animate-marquee {
-      animation: marquee 30s linear infinite;
-    }
-
-    @media (max-width: 768px) {
-      .glass-card {
-        -webkit-backdrop-filter: none !important;
-        backdrop-filter: none !important;
-        background: rgba(255, 255, 255, 0.05);
-      }
-    }
-  </style>
+  <!-- Estilos custom movidos a src/styles/globals.css -->
 
   <!-- script de Unicorn Studio - Carga diferida -->
   <script src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js"

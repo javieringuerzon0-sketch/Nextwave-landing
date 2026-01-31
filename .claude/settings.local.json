@@ -15,7 +15,9 @@
       "Bash(timeout:*)",
       "Bash(curl:*)",
       "WebFetch(domain:nextwave-ia-landing.vercel.app)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init -p)"
     ]
   }
 }
