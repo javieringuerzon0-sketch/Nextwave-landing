@@ -3,57 +3,77 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-24 md:py-40 relative overflow-hidden bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          
-          <div className="animate-on-scroll relative">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/5 blur-3xl rounded-full"></div>
-            <div className="relative glass-card p-4 rounded-[48px] border-white/5 rotate-[-2deg]">
-              <img 
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&q=80" 
-                className="w-full aspect-[4/5] object-cover rounded-[40px] grayscale opacity-80" 
-                alt="Nuestro Proceso" 
-              />
-              <div className="absolute bottom-12 right-12 glass-card p-6 rounded-3xl border-white/10 backdrop-blur-xl animate-bounce">
-                <div className="text-3xl font-black text-white">99%</div>
-                <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Precisión IA</div>
+    <section id="about" className="py-24 md:py-32 relative overflow-hidden bg-transparent z-20 font-manrope">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Lado Izquierdo: Imagen con marco decorativo */}
+          <div className="animate-on-scroll relative group">
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-transparent blur-2xl -z-10 opacity-50"></div>
+            <div className="relative p-2 rounded-[40px] border border-white/10 bg-white/[0.02] backdrop-blur-sm">
+              <div className="overflow-hidden rounded-[32px] aspect-square relative">
+                <img
+                  src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f4c3142b-39a1-4b9e-bd27-a5956efe499a_3840w.webp"
+                  alt="Visión NextWave IA"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-x-0 top-6 flex justify-center">
+                  <div className="h-1 w-20 bg-white/20 rounded-full blur-[1px]"></div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="animate-on-scroll space-y-10">
+          {/* Lado Derecho: Contenido y Tarjetas */}
+          <div className="animate-on-scroll space-y-8" style={{ animationDelay: '0.1s' }}>
+            {/* Badge superior */}
+            <div className="flex items-center gap-3">
+              <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center border border-white/10">
+                <div className="w-2 h-2 rounded-full bg-indigo-400 shadow-[0_0_8px_#818cf8]"></div>
+              </div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-white/30">Sobre NextWave IA</span>
+            </div>
+
+            {/* Títulos */}
             <div className="space-y-4">
-              <span className="text-xs font-black uppercase tracking-[0.4em] text-white/30">Nuestra Visión</span>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white leading-tight">
-                No somos una agencia,<br />somos tu <span className="italic font-light">socio tecnológico.</span>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white leading-[1.1]">
+                Diseño inteligente, <br />
+                <span className="text-white/100">resultados hermosos.</span>
               </h2>
+              <p className="text-base text-white/50 leading-relaxed max-w-xl">
+                NextWave IA combina tecnología de vanguardia con principios de diseño pensados para crear experiencias de impacto. Empoderamos a las empresas para llevar su visión al siguiente nivel digital.
+              </p>
             </div>
 
-            <p className="text-lg text-white/50 leading-relaxed max-w-xl">
-              En NextWave IA, entendemos que el futuro no se trata de reemplazar humanos, sino de amplificar sus capacidades. Diseñamos sistemas que aprenden de tu mercado para posicionarte un paso adelante.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              <div className="space-y-3">
-                <div className="text-white font-bold text-sm tracking-tight flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                  Desarrollo Centrado en Datos
-                </div>
-                <p className="text-xs text-white/40 leading-relaxed">Analizamos el comportamiento de tu usuario antes de escribir la primera línea de código.</p>
-              </div>
-              <div className="space-y-3">
-                <div className="text-white font-bold text-sm tracking-tight flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
-                  Soporte Estratégico Real
-                </div>
-                <p className="text-xs text-white/40 leading-relaxed">Acompañamiento continuo para asegurar que tu inversión escale con tu negocio.</p>
-              </div>
+            {/* Botón Principal (Estilo de la imagen) */}
+            <div className="pt-2">
+              <button className="group relative inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-[#ffcd75] text-black rounded-full text-sm font-bold transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(129,140,248,0.5)]">
+                Descubre Nuestra Historia
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-black/10">
+                  <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </button>
             </div>
 
-            <button className="px-10 py-5 border border-white/10 rounded-full text-xs font-black uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all duration-500">
-              Ver Nuestros Casos de Éxito
-            </button>
+            {/* Trilogía de Tarjetas (Ajuste de tamaño intermedio) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-10">
+              {[
+                { title: 'Ultra Rápido', desc: 'Crea sitios profesionales en minutos.' },
+                { title: 'Potenciado por IA', desc: 'Inteligencia GPT-5 manejando el código.' },
+                { title: 'Totalmente Personalizable', desc: 'Control total sobre cada estilo.' }
+              ].map((card, i) => (
+                <div key={i} className="border-gradient before:rounded-[20px] p-6 rounded-[20px] bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] transition-all duration-300 group/card shadow-lg">
+                  <h4 className="text-[13px] sm:text-[14px] font-bold text-white mb-2 font-manrope tracking-tight group-hover/card:text-blue-400 transition-colors">
+                    {card.title}
+                  </h4>
+                  <p className="text-[11px] text-white/40 leading-relaxed font-medium group-hover/card:text-white/60 transition-colors">
+                    {card.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>

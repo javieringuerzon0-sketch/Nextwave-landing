@@ -3,10 +3,10 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black py-20 border-t border-white/5">
+    <footer className="bg-transparent py-20 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
-          
+
           <div className="md:col-span-5 space-y-8">
             <a href="#" className="flex items-center gap-3">
               <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
@@ -29,20 +29,20 @@ const Footer: React.FC = () => {
           <div className="md:col-span-2 space-y-6">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Soluciones</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">Web Pro Plus</a></li>
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">Chatbots Avanzados</a></li>
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">SEO con IA</a></li>
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">Consultoría</a></li>
+              <li><a href="#pricing" className="text-xs text-white/40 hover:text-white transition-colors">Web Pro Plus</a></li>
+              <li><a href="#stats" className="text-xs text-white/40 hover:text-white transition-colors">Ingeniería de Software</a></li>
+              <li><a href="#stats" className="text-xs text-white/40 hover:text-white transition-colors">Diseño Web UI/UX</a></li>
+              <li><a href="#stats" className="text-xs text-white/40 hover:text-white transition-colors">Transformación Digital</a></li>
             </ul>
           </div>
 
           <div className="md:col-span-2 space-y-6">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Nosotros</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">Misión</a></li>
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">Equipo</a></li>
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-xs text-white/40 hover:text-white transition-colors">Contacto</a></li>
+              <li><a href="#about" className="text-xs text-white/40 hover:text-white transition-colors">Nuestra Filosofía</a></li>
+              <li><a href="#testimonials" className="text-xs text-white/40 hover:text-white transition-colors">Testimonios</a></li>
+              <li><a href="#pricing" className="text-xs text-white/40 hover:text-white transition-colors">Planes de Precios</a></li>
+              <li><a href="#contact" className="text-xs text-white/40 hover:text-white transition-colors">Contacto</a></li>
             </ul>
           </div>
 

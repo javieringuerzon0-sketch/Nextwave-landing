@@ -1,132 +1,163 @@
 
-import React, { useState } from 'react';
+
+import React from 'react';
 
 const Pricing: React.FC = () => {
-  const [isAnnual, setIsAnnual] = useState(true);
-
   const plans = [
     {
-      name: "Básico",
-      monthly: 899,
-      annual: 719,
-      description: "Ideal para emprendedores que inician su viaje digital con IA.",
+      id: "1",
+      name: "ECONÓMICO",
+      price: "5,550",
+      time: "5-7 días",
+      description: "Ideal para: Emprendedores y startups",
       features: [
-        "1 Sitio Web optimizado",
-        "Integración básica de Chatbot",
-        "Certificado SSL Gratuito",
-        "Soporte vía Email",
-        "10GB de Almacenamiento"
+        "Hasta 2 secciones de información",
+        "Diseño Web 100% responsivo",
+        "Certificado SSL incluido",
+        "Hosting por 1 año",
+        "Dominio .com por 1 año"
       ],
-      cta: "Comenzar Gratis",
-      popular: false
+      featured: false,
+      accentColor: "rgba(92,225,230,0.1)"
     },
     {
-      name: "Intermedio",
-      monthly: 2450,
-      annual: 1960,
-      description: "Nuestra solución más equilibrada para negocios en crecimiento.",
+      id: "3",
+      name: "NEGOCIOS",
+      price: "8,800",
+      time: "7-10 días",
+      description: "Ideal para: Negocios establecidos",
       features: [
-        "Hasta 3 Sitios Web",
-        "IA Avanzada de Atención",
-        "SEO Automatizado",
-        "Soporte 24/7 Prioritario",
-        "Analítica Predictiva",
-        "Dominio .mx Incluido"
+        "Hasta 6 secciones profesionales",
+        "Diseño responsive avanzado",
+        "Compatibilidad total móviles",
+        "Certificado SSL Premium",
+        "Hosting + Dominio 1 año",
+        "Imagen profesional de marca"
       ],
-      cta: "Elegir Plan Pro",
-      popular: true
+      featured: false,
+      accentColor: "rgba(129,140,248,0.1)"
     },
     {
-      name: "Web Pro Plus",
-      monthly: 5900,
-      annual: 4720,
-      description: "Máximo rendimiento y personalización total para empresas.",
+      id: "8",
+      name: "WEB PRO PLUS",
+      price: "17,799",
+      time: "+20 días",
+      isPremium: true,
+      description: "Ideal para: Empresas enfocadas en ventas",
       features: [
-        "Sitios Ilimitados",
-        "Entrenamiento de IA propia",
-        "Seguridad de Grado Bancario",
-        "Consultoría Mensual",
-        "API Personalizada",
-        "Servidor Dedicado MX"
+        "Todo de WEB PRO incluido",
+        "Landing Page adicional",
+        "Estructura 100% enfocada a ventas",
+        "Sistema de captación de leads",
+        "Auditoría completa de ventas",
+        "Estrategia de conversión",
+        "Soporte premium 6 meses"
       ],
-      cta: "Contactar a un Experto",
-      popular: false
+      featured: true,
+      accentColor: "rgba(251,191,36,0.15)"
     }
   ];
 
   return (
-    <section id="pricing" className="py-20 md:py-32 relative bg-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 space-y-4">
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white animate-on-scroll">
+    <section id="pricing" className="relative py-24 bg-transparent overflow-hidden font-manrope">
+      {/* Sutiles resplandores de fondo */}
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.2em] text-cyan-400 uppercase">
+            <span className="w-1 h-1 rounded-full bg-cyan-400" />
             Inversión Inteligente
-          </h2>
-          <p className="text-lg text-white/40 max-w-2xl mx-auto animate-on-scroll">
-            Planes diseñados para escalar. Sin letras chiquitas, solo resultados.
-          </p>
-          
-          <div className="flex items-center justify-center gap-6 pt-6 animate-on-scroll">
-            <span className={`text-xs font-bold uppercase tracking-widest transition-colors ${!isAnnual ? 'text-white' : 'text-white/30'}`}>Mensual</span>
-            <button 
-              onClick={() => setIsAnnual(!isAnnual)}
-              className="relative inline-flex h-7 w-14 items-center rounded-full bg-white/10 p-1 transition-all ring-1 ring-white/10"
-            >
-              <div className={`h-5 w-5 rounded-full bg-white shadow-xl transition-transform duration-500 ${isAnnual ? 'translate-x-7' : 'translate-x-0'}`}></div>
-            </button>
-            <span className={`text-xs font-bold uppercase tracking-widest transition-colors ${isAnnual ? 'text-white' : 'text-white/30'}`}>
-              Anual <span className="ml-2 text-[10px] text-green-400">-20% Ahorro</span>
-            </span>
           </div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white font-manrope">
+            Planes de Desarrollo
+          </h2>
+          <p className="text-sm text-white/40 max-w-xl mx-auto tracking-wide leading-relaxed">
+            Soluciones web de alto impacto diseñadas para escalar tu negocio digital.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {plans.map((plan, idx) => (
-            <div 
-              key={idx} 
-              className={`animate-on-scroll group relative glass-card rounded-[40px] p-10 flex flex-col transition-all duration-500 hover:bg-white/10 ${plan.popular ? 'bg-white/5 ring-1 ring-white/20' : ''}`}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {plans.map((plan) => (
+            <div
+              key={plan.id}
+              className={`group relative flex flex-col h-full overflow-hidden rounded-[28px] border p-7 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 ${plan.featured
+                ? 'border-amber-500/30 bg-white/[0.04] shadow-[0_20px_40px_-15px_rgba(251,191,36,0.1)]'
+                : 'border-white/5 bg-white/[0.02] hover:border-white/10'
+                }`}
             >
-              {plan.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1.5 rounded-full bg-white text-black text-[10px] font-black uppercase tracking-[0.2em]">
-                  Recomendado
+              {/* Efecto de luz interna en hover */}
+              <div
+                className="absolute -right-10 -top-10 w-40 h-40 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{ backgroundColor: plan.accentColor }}
+              />
+
+              <div className="relative flex justify-between items-start mb-8">
+                <div className="space-y-3">
+                  <div className={`flex items-center justify-center w-7 h-7 rounded-full border text-[10px] font-bold ${plan.featured ? 'border-amber-500/50 text-amber-400 bg-amber-500/10' : 'border-white/20 text-white/60 bg-white/5'
+                    }`}>
+                    {plan.id}
+                  </div>
+                  <h3 className={`text-lg font-bold tracking-wide ${plan.featured ? 'text-amber-400' : 'text-white'}`}>
+                    {plan.name}
+                    {plan.isPremium && <span className="ml-1 text-xs">⭐⭐</span>}
+                  </h3>
                 </div>
-              )}
 
-              <div className="mb-10">
-                <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
-                <p className="text-xs text-white/40 leading-relaxed min-h-[40px]">{plan.description}</p>
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-white tracking-tighter">
+                    ${plan.price}
+                  </div>
+                  <div className="text-[9px] font-bold text-white/30 tracking-widest mt-0.5">MXN</div>
+                </div>
               </div>
 
-              <div className="mb-10 flex items-baseline gap-1">
-                <span className="text-xs font-bold text-white/40">MXN</span>
-                <span className="text-5xl font-black text-white tracking-tighter">
-                  ${isAnnual ? plan.annual.toLocaleString() : plan.monthly.toLocaleString()}
+              <div className="flex flex-wrap gap-2 mb-8">
+                <span className={`px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border ${plan.featured ? 'border-amber-500/20 text-amber-500 bg-amber-500/5' : 'border-white/10 text-white/40 bg-white/5'
+                  }`}>
+                  • {plan.time}
                 </span>
-                <span className="text-sm text-white/30 font-medium">/mes</span>
+                {plan.isPremium && (
+                  <span className="px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                    PREMIUM
+                  </span>
+                )}
               </div>
 
-              <div className="space-y-5 mb-12 flex-1">
-                {plan.features.map((feature, fIdx) => (
-                  <div key={fIdx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <ul className="flex-1 space-y-3.5 mb-10">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className={`mt-1 h-3.5 w-3.5 flex items-center justify-center shrink-0 ${plan.featured ? 'text-amber-400' : 'text-cyan-400'
+                      }`}>
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-sm text-white/60 font-medium">{feature}</span>
-                  </div>
+                    <span className="text-sm text-white/60 font-medium leading-tight">{feature}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
 
-              <button className={`w-full py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 ${plan.popular ? 'bg-white text-black hover:scale-[1.02]' : 'bg-transparent text-white border border-white/20 hover:bg-white/5'}`}>
-                {plan.cta}
-              </button>
+              <div className="space-y-5">
+                <button className={`w-full py-4 rounded-xl text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 ${plan.featured
+                  ? 'bg-amber-400 text-black hover:bg-amber-300 shadow-lg shadow-amber-500/20'
+                  : 'bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20'
+                  }`}>
+                  Comenzar ahora
+                </button>
+                <div className={`text-[10px] text-center font-bold tracking-widest uppercase ${plan.featured ? 'text-amber-500/40' : 'text-white/20'
+                  }`}>
+                  {plan.description}
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-20 text-center animate-on-scroll">
-          <p className="text-[10px] text-white/20 uppercase tracking-[0.3em] font-bold">
-            Precios sujetos a IVA. Facturación disponible en México.
+        <div className="mt-20 text-center">
+          <p className="text-[10px] text-white/10 uppercase tracking-[0.4em] font-black transition-all duration-500 hover:text-white/80 hover:tracking-[0.6em] cursor-default">
+            NextWave IA • No hay cuotas ocultas • Facturación disponible
           </p>
         </div>
       </div>
@@ -135,3 +166,6 @@ const Pricing: React.FC = () => {
 };
 
 export default Pricing;
+
+
+

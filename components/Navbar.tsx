@@ -28,12 +28,12 @@ const Navbar: React.FC = () => {
           <a href="#testimonials" className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Casos</a>
           <a href="#pricing" className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors">Precios</a>
           <div className="h-4 w-px bg-white/10"></div>
-          <button className="group relative inline-flex items-center justify-center px-6 py-2 text-xs font-bold uppercase tracking-widest text-black bg-white rounded-full hover:scale-105 transition-all duration-300">
+          <a href="#contact" className="group relative inline-flex items-center justify-center px-6 py-2 text-xs font-bold uppercase tracking-widest text-black bg-white rounded-full hover:scale-105 transition-all duration-300">
             Agenda una Demo
-          </button>
+          </a>
         </div>
 
-        <button className="md:hidden text-white">
+        <button className="md:hidden text-white" aria-label="Abrir menú">
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
