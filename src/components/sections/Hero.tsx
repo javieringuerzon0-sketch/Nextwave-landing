@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Hero: React.FC = () => {
@@ -11,15 +10,16 @@ const Hero: React.FC = () => {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-50"
         style={{
-          backgroundImage: 'url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a72ca2f3-9dd1-4fe4-84ba-fe86468a5237_3840w.webp?w=800&q=80)',
+          backgroundImage:
+            'url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad12226b-9c56-48b6-81b8-bf1ef9f0cb87_3840w.webp)',
           maskImage: 'linear-gradient(180deg, transparent, black 15%, black 85%, transparent)',
-          WebkitMaskImage: 'linear-gradient(180deg, transparent, black 15%, black 85%, transparent)'
+          WebkitMaskImage:
+            'linear-gradient(180deg, transparent, black 15%, black 85%, transparent)',
         }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
           {/* Lado Izquierdo: Texto y Botón */}
           <div className="lg:col-span-7 space-y-6 md:space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
@@ -34,19 +34,32 @@ const Hero: React.FC = () => {
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
                 Creamos <br />
-                <span className="bg-clip-text text-transparent bg-gradient-to-br from-white to-[#ffcd75]">Experiencias</span> <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-br from-white to-[#ffcd75]">
+                  Experiencias
+                </span>{' '}
+                <br />
                 que Trascienden
               </h1>
 
               <p className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed font-medium">
-                Diseñamos interfaces que combinan belleza con funcionalidad, creando experiencias fluidas que los usuarios aman y las empresas necesitan para prosperar.
+                Diseñamos interfaces que combinan belleza con funcionalidad, creando experiencias
+                fluidas que los usuarios aman y las empresas necesitan para prosperar.
               </p>
             </div>
 
             <div className="pt-4">
-              <a href="#contact" className="group inline-flex items-center justify-center gap-3 px-10 py-4 bg-white text-black rounded-full text-sm font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all duration-300 shadow-xl shadow-orange-500/10">
+              <a
+                href="#contact"
+                className="group inline-flex items-center justify-center gap-3 px-10 py-4 bg-white text-black rounded-full text-sm font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all duration-300 shadow-xl shadow-orange-500/10"
+              >
                 Iniciar Proyecto
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <svg
+                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
@@ -59,13 +72,25 @@ const Hero: React.FC = () => {
             <div className="group bg-white/[0.04] backdrop-blur-3xl border border-white/10 rounded-[40px] p-8 shadow-2xl transition-all duration-500 hover:border-white/20">
               <div className="flex items-center gap-5 mb-8">
                 <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10 shadow-inner">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                    />
                   </svg>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-white tracking-tighter">150+</div>
-                  <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest mt-0.5">Proyectos Entregados</div>
+                  <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest mt-0.5">
+                    Proyectos Entregados
+                  </div>
                 </div>
               </div>
 
@@ -75,22 +100,31 @@ const Hero: React.FC = () => {
                   <span>98%</span>
                 </div>
                 <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                  <div className="h-full bg-white rounded-full transition-all duration-1000" style={{ width: '98%' }}></div>
+                  <div
+                    className="h-full bg-white rounded-full transition-all duration-1000"
+                    style={{ width: '98%' }}
+                  ></div>
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/5 text-center">
                 <div className="hover:scale-105 transition-transform">
                   <div className="text-xl font-bold text-white mb-1">5+</div>
-                  <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest">AÑOS</div>
+                  <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest">
+                    AÑOS
+                  </div>
                 </div>
                 <div className="border-x border-white/5 hover:scale-105 transition-transform">
                   <div className="text-xl font-bold text-white mb-1">24/7</div>
-                  <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest">SOPORTE</div>
+                  <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest">
+                    SOPORTE
+                  </div>
                 </div>
                 <div className="hover:scale-105 transition-transform">
                   <div className="text-xl font-bold text-white mb-1">100%</div>
-                  <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest">CALIDAD</div>
+                  <div className="text-[9px] font-bold text-white/30 uppercase tracking-widest">
+                    CALIDAD
+                  </div>
                 </div>
               </div>
 
@@ -106,20 +140,26 @@ const Hero: React.FC = () => {
 
             {/* Tarjeta de Clientes */}
             <div className="bg-white/[0.02] backdrop-blur-2xl border border-white/5 rounded-[40px] p-8 overflow-hidden relative group">
-              <h3 className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-8">Clientes Destacados</h3>
+              <h3 className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-8">
+                Clientes Destacados
+              </h3>
               <div className="flex gap-16 animate-marquee whitespace-nowrap items-center">
                 <div className="flex shrink-0 gap-16 items-center text-white/40">
                   <span className="text-sm font-['Orbitron'] tracking-[0.2em]">ORBIT</span>
                   <span className="text-xl font-['Pacifico'] tracking-normal lowercase">Retro</span>
                   <span className="text-2xl font-['Bebas_Neue'] tracking-wider">SUMMIT</span>
-                  <span className="text-sm font-['Montserrat'] font-black tracking-tighter">TECH</span>
+                  <span className="text-sm font-['Montserrat'] font-black tracking-tighter">
+                    TECH
+                  </span>
                   <span className="text-2xl font-['Caveat'] tracking-normal">Aura</span>
                 </div>
                 <div className="flex shrink-0 gap-16 items-center text-white/40">
                   <span className="text-sm font-['Orbitron'] tracking-[0.2em]">ORBIT</span>
                   <span className="text-xl font-['Pacifico'] tracking-normal lowercase">Retro</span>
                   <span className="text-2xl font-['Bebas_Neue'] tracking-wider">SUMMIT</span>
-                  <span className="text-sm font-['Montserrat'] font-black tracking-tighter">TECH</span>
+                  <span className="text-sm font-['Montserrat'] font-black tracking-tighter">
+                    TECH
+                  </span>
                   <span className="text-2xl font-['Caveat'] tracking-normal">Aura</span>
                 </div>
               </div>
@@ -127,7 +167,6 @@ const Hero: React.FC = () => {
               <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#010a09] to-transparent z-10"></div>
             </div>
           </div>
-
         </div>
       </div>
 
