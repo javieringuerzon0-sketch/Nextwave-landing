@@ -19,7 +19,8 @@
       "Bash(npm install:*)",
       "Bash(npx tailwindcss init -p)",
       "Bash(npm run lint:*)",
-      "Bash(npx husky init)"
+      "Bash(npx husky init)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }
