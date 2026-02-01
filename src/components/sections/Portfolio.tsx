@@ -25,12 +25,13 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 3,
-      title: 'Quantum Pay',
-      category: 'Fintech App',
-      description: 'App de pagos instantáneos con diseño minimalista',
+      title: 'Analytics Hub',
+      category: 'Data Analytics Platform',
+      description: 'Plataforma de análisis de datos con visualizaciones en tiempo real',
       color: 'from-blue-500/40 via-cyan-500/40 to-indigo-500/40',
       size: 'col-span-1 row-span-1',
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
+      image:
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f037a5c1-c949-4343-8431-bea96e16a9ed_3840w.webp',
     },
     {
       id: 4,
