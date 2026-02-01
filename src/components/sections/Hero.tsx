@@ -42,19 +42,20 @@ const Hero: React.FC = () => {
               </h1>
 
               <p className="text-base md:text-lg text-white/80 max-w-xl leading-relaxed font-medium">
-                Diseñamos interfaces que combinan belleza con funcionalidad, creando experiencias
-                fluidas que los usuarios aman y las empresas necesitan para prosperar.
+                Transformamos ideas en productos digitales excepcionales. Desde interfaces
+                intuitivas hasta sistemas de diseño completos, creamos soluciones visuales que
+                impulsan el crecimiento de tu marca.
               </p>
             </div>
 
             <div className="pt-4">
               <a
                 href="#contact"
-                className="group inline-flex items-center justify-center gap-3 px-10 py-4 bg-white text-black rounded-full text-sm font-bold uppercase tracking-widest hover:bg-zinc-200 transition-all duration-300 shadow-xl shadow-orange-500/10"
+                className="group relative inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-black rounded-full text-xs font-bold uppercase tracking-widest overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
               >
-                Iniciar Proyecto
+                <span className="relative z-10">Iniciar Proyecto</span>
                 <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-1 transition-all duration-300"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -62,6 +63,8 @@ const Hero: React.FC = () => {
                 >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
+                <div className="absolute inset-0 bg-gradient-to-r from-white via-zinc-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </a>
             </div>
           </div>

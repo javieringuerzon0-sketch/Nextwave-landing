@@ -1,0 +1,156 @@
+import React from 'react';
+
+const Portfolio: React.FC = () => {
+  const projects = [
+    {
+      id: 1,
+      title: 'LuxeHub',
+      category: 'E-commerce Platform',
+      description: 'Plataforma premium de comercio electrónico con experiencia inmersiva',
+      color: 'from-violet-500/20 to-purple-500/20',
+      size: 'col-span-2 row-span-2',
+    },
+    {
+      id: 2,
+      title: 'NeuroSync',
+      category: 'Health Tech Dashboard',
+      description: 'Dashboard de análisis de salud mental con IA',
+      color: 'from-emerald-500/20 to-teal-500/20',
+      size: 'col-span-1 row-span-1',
+    },
+    {
+      id: 3,
+      title: 'Quantum Pay',
+      category: 'Fintech App',
+      description: 'App de pagos instantáneos con diseño minimalista',
+      color: 'from-blue-500/20 to-cyan-500/20',
+      size: 'col-span-1 row-span-1',
+    },
+    {
+      id: 4,
+      title: 'EcoVerse',
+      category: 'Sustainability Platform',
+      description: 'Plataforma de gestión ambiental empresarial',
+      color: 'from-green-500/20 to-lime-500/20',
+      size: 'col-span-1 row-span-2',
+    },
+    {
+      id: 5,
+      title: 'Artisan Studio',
+      category: 'Creative Portfolio',
+      description: 'Portfolio interactivo para artistas digitales',
+      color: 'from-orange-500/20 to-amber-500/20',
+      size: 'col-span-2 row-span-1',
+    },
+    {
+      id: 6,
+      title: 'VaultSecure',
+      category: 'Cybersecurity',
+      description: 'Dashboard de seguridad con monitoreo en tiempo real',
+      color: 'from-red-500/20 to-rose-500/20',
+      size: 'col-span-1 row-span-1',
+    },
+  ];
+
+  return (
+    <section id="portfolio" className="relative py-24 md:py-32 bg-black overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-xs tracking-widest uppercase font-bold text-white/70">
+              Proyectos Destacados
+            </span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white leading-tight">
+            Creando el{' '}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400">
+              Futuro Digital
+            </span>
+          </h2>
+
+          <p className="text-lg text-white/60 max-w-2xl">
+            Cada proyecto es una oportunidad para redefinir estándares y crear experiencias que
+            trascienden.
+          </p>
+        </div>
+
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[280px]">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className={`group relative ${project.size} rounded-3xl bg-gradient-to-br ${project.color} backdrop-blur-xl border border-white/10 overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:border-white/20 hover:shadow-2xl hover:shadow-white/10`}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
+
+              {/* Content */}
+              <div className="relative h-full p-8 flex flex-col justify-between">
+                {/* Top Badge */}
+                <div className="flex items-start justify-between">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">
+                    {project.category}
+                  </span>
+                  <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-45">
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Bottom Info */}
+                <div className="space-y-2">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed">{project.description}</p>
+
+                  {/* Hover Line */}
+                  <div className="h-0.5 w-0 bg-gradient-to-r from-white to-transparent group-hover:w-full transition-all duration-500" />
+                </div>
+              </div>
+
+              {/* Shine Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white text-sm font-semibold backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+          >
+            Ver Todos los Proyectos
+            <svg
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Portfolio;
