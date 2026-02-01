@@ -1,0 +1,8 @@
+node_modules
+dist
+build
+.vercel
+.claude
+*.log
+package-lock.json
+bundled_js.js
