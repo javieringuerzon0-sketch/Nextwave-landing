@@ -20,7 +20,9 @@
       "Bash(npx tailwindcss init -p)",
       "Bash(npm run lint:*)",
       "Bash(npx husky init)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "WebFetch(domain:www.aura.build)",
+      "WebSearch"
     ]
   }
 }
