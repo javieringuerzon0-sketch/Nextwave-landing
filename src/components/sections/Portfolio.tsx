@@ -7,7 +7,7 @@ const Portfolio: React.FC = () => {
       title: 'LuxeHub',
       category: 'E-commerce Platform',
       description: 'Tienda online de lujo con carrito inteligente y checkout optimizado',
-      color: 'from-violet-500/20 to-purple-500/20',
+      color: 'from-violet-500/40 via-purple-500/40 to-fuchsia-500/40',
       size: 'col-span-2 row-span-2',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d7cc647a-719e-42ac-9f13-e8de8d3a133f_3840w.webp',
@@ -98,13 +98,13 @@ const Portfolio: React.FC = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700"
+                    className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-110 transition-all duration-700"
                   />
                 </div>
               )}
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
+              {/* Gradient Overlay - Lighter for more vibrant colors */}
+              <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/20 to-transparent" />
 
               {/* Content */}
               <div className="relative h-full p-8 flex flex-col justify-between">
