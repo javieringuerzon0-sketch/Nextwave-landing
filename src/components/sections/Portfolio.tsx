@@ -35,10 +35,10 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 4,
-      title: 'AppBuilder Pro',
-      category: 'Desarrollo de Apps',
-      description: 'Creamos aplicaciones móviles personalizadas para tu negocio',
-      color: 'from-indigo-500/40 via-violet-500/40 to-purple-500/40',
+      title: 'AdsPro',
+      category: 'Publicidad Digital',
+      description: 'Creamos anuncios publicitarios para tus redes sociales y web',
+      color: 'from-orange-500/40 via-red-500/40 to-pink-500/40',
       size: 'col-span-1 row-span-2',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/221df085-0bd2-45e6-bfcf-a5cb1784b6d3_3840w.webp',
@@ -55,10 +55,10 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 6,
-      title: 'AdsPro',
-      category: 'Publicidad Digital',
-      description: 'Creamos anuncios publicitarios para tus redes sociales y web',
-      color: 'from-orange-500/40 via-red-500/40 to-pink-500/40',
+      title: 'AppBuilder Pro',
+      category: 'Desarrollo de Apps',
+      description: 'Creamos aplicaciones móviles personalizadas para tu negocio',
+      color: 'from-indigo-500/40 via-violet-500/40 to-purple-500/40',
       size: 'col-span-1 row-span-1',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68129f91-c675-462b-a62c-46e1a013190a_3840w.webp',
