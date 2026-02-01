@@ -35,12 +35,13 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 4,
-      title: 'EcoVerse',
-      category: 'Sustainability Platform',
-      description: 'Plataforma de gestión ambiental empresarial',
-      color: 'from-green-500/40 via-lime-500/40 to-emerald-500/40',
+      title: 'AppBuilder Pro',
+      category: 'Desarrollo de Apps',
+      description: 'Creamos aplicaciones móviles personalizadas para tu negocio',
+      color: 'from-indigo-500/40 via-violet-500/40 to-purple-500/40',
       size: 'col-span-1 row-span-2',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+      image:
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68129f91-c675-462b-a62c-46e1a013190a_3840w.webp',
     },
     {
       id: 5,
