@@ -10,7 +10,7 @@ const Portfolio: React.FC = () => {
       color: 'from-violet-500/40 via-purple-500/40 to-fuchsia-500/40',
       size: 'col-span-2 row-span-2',
       image:
-        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d7cc647a-719e-42ac-9f13-e8de8d3a133f_3840w.webp',
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dc799a20-da2f-49ee-98ee-cf54fdb35126_3840w.jpg',
       features: ['Carrito de compras', 'Pasarela de pago', 'Gestión de inventario'],
     },
     {
