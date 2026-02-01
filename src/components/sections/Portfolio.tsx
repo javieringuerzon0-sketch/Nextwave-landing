@@ -55,12 +55,13 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 6,
-      title: 'VaultSecure',
-      category: 'Cybersecurity',
-      description: 'Dashboard de seguridad con monitoreo en tiempo real',
-      color: 'from-red-500/40 via-rose-500/40 to-pink-500/40',
+      title: 'AdsPro',
+      category: 'Publicidad Digital',
+      description: 'Creamos anuncios publicitarios para tus redes sociales y web',
+      color: 'from-orange-500/40 via-red-500/40 to-pink-500/40',
       size: 'col-span-1 row-span-1',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80',
+      image:
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/221df085-0bd2-45e6-bfcf-a5cb1784b6d3_3840w.webp',
     },
   ];
 
