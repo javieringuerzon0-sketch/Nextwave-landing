@@ -41,7 +41,7 @@ const Portfolio: React.FC = () => {
       color: 'from-orange-500/40 via-red-500/40 to-pink-500/40',
       size: 'col-span-1 row-span-2',
       image:
-        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/221df085-0bd2-45e6-bfcf-a5cb1784b6d3_3840w.webp',
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2fc6b2a5-39fc-4917-b025-be93fdf03f5a_3840w.webp',
     },
     {
       id: 5,
