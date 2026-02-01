@@ -15,12 +15,13 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 2,
-      title: 'NeuroSync',
-      category: 'Health Tech Dashboard',
-      description: 'Dashboard de análisis de salud mental con IA',
-      color: 'from-emerald-500/40 via-teal-500/40 to-cyan-500/40',
+      title: 'DriveSync',
+      category: 'Automotive Platform',
+      description: 'Plataforma digital para concesionarios con inventario inteligente',
+      color: 'from-slate-500/40 via-gray-500/40 to-zinc-500/40',
       size: 'col-span-1 row-span-1',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
+      image:
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/73cec214-1f3d-4c96-a480-b22ce84b98e8_3840w.jpg',
     },
     {
       id: 3,
