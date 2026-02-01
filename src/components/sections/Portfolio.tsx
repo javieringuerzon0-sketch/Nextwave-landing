@@ -61,7 +61,7 @@ const Portfolio: React.FC = () => {
       color: 'from-indigo-500/40 via-violet-500/40 to-purple-500/40',
       size: 'col-span-2 row-span-1',
       image:
-        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68129f91-c675-462b-a62c-46e1a013190a_3840w.webp',
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f9fafcbc-4d96-425a-a1fd-cb169399875b_3840w.webp',
     },
   ];
 
