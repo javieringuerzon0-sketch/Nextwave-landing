@@ -6,9 +6,12 @@ const Portfolio: React.FC = () => {
       id: 1,
       title: 'LuxeHub',
       category: 'E-commerce Platform',
-      description: 'Plataforma premium de comercio electrónico con experiencia inmersiva',
+      description: 'Tienda online de lujo con carrito inteligente y checkout optimizado',
       color: 'from-violet-500/20 to-purple-500/20',
       size: 'col-span-2 row-span-2',
+      image:
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d7cc647a-719e-42ac-9f13-e8de8d3a133f_3840w.webp',
+      features: ['Carrito de compras', 'Pasarela de pago', 'Gestión de inventario'],
     },
     {
       id: 2,
@@ -89,6 +92,17 @@ const Portfolio: React.FC = () => {
               className={`group relative ${project.size} rounded-3xl bg-gradient-to-br ${project.color} backdrop-blur-xl border border-white/10 overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:border-white/20 hover:shadow-2xl hover:shadow-white/10`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
+              {/* Background Image (only for LuxeHub) */}
+              {project.image && (
+                <div className="absolute inset-0">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-110 transition-all duration-700"
+                  />
+                </div>
+              )}
+
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
 
@@ -113,11 +127,25 @@ const Portfolio: React.FC = () => {
                 </div>
 
                 {/* Bottom Info */}
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
                     {project.title}
                   </h3>
                   <p className="text-sm text-white/60 leading-relaxed">{project.description}</p>
+
+                  {/* Features (only for LuxeHub) */}
+                  {project.features && (
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {project.features.map((feature, idx) => (
+                        <span
+                          key={idx}
+                          className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/80 backdrop-blur-sm"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Hover Line */}
                   <div className="h-0.5 w-0 bg-gradient-to-r from-white to-transparent group-hover:w-full transition-all duration-500" />
