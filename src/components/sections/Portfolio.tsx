@@ -45,12 +45,13 @@ const Portfolio: React.FC = () => {
     },
     {
       id: 5,
-      title: 'Artisan Studio',
-      category: 'Creative Portfolio',
-      description: 'Portfolio interactivo para artistas digitales',
-      color: 'from-orange-500/40 via-amber-500/40 to-yellow-500/40',
+      title: 'DashBoard Pro',
+      category: 'Panel de Control',
+      description: 'Creamos tu panel de control personalizado para gestionar tu negocio',
+      color: 'from-cyan-500/40 via-blue-500/40 to-indigo-500/40',
       size: 'col-span-2 row-span-1',
-      image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80',
+      image:
+        'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/08283a81-a4d9-46a1-afee-34837af67166_3840w.jpg',
     },
     {
       id: 6,
