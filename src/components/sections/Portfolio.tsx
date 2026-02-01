@@ -98,7 +98,7 @@ const Portfolio: React.FC = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-110 transition-all duration-700"
+                    className="w-full h-full object-cover opacity-40 group-hover:opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
                   />
                 </div>
               )}
@@ -139,9 +139,14 @@ const Portfolio: React.FC = () => {
                       {project.features.map((feature, idx) => (
                         <span
                           key={idx}
-                          className="text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/80 backdrop-blur-sm"
+                          className="relative text-[10px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/80 backdrop-blur-sm cursor-pointer overflow-hidden group/badge hover:scale-110 hover:border-white/40 hover:bg-white/20 hover:text-white transition-all duration-300"
+                          style={{ animationDelay: `${idx * 100}ms` }}
                         >
-                          {feature}
+                          <span className="relative z-10 group-hover/badge:animate-pulse">
+                            {feature}
+                          </span>
+                          {/* Shine effect on badge */}
+                          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/badge:translate-x-full transition-transform duration-700"></span>
                         </span>
                       ))}
                     </div>
