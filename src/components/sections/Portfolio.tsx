@@ -59,7 +59,7 @@ const Portfolio: React.FC = () => {
       category: 'Desarrollo de Apps',
       description: 'Creamos aplicaciones móviles personalizadas para tu negocio',
       color: 'from-indigo-500/40 via-violet-500/40 to-purple-500/40',
-      size: 'col-span-1 row-span-1',
+      size: 'col-span-2 row-span-1',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68129f91-c675-462b-a62c-46e1a013190a_3840w.webp',
     },
