@@ -165,9 +165,6 @@ const Portfolio: React.FC = () => {
                       ))}
                     </div>
                   )}
-
-                  {/* Hover Line */}
-                  <div className="h-0.5 w-0 bg-gradient-to-r from-white to-transparent group-hover:w-full transition-all duration-500" />
                 </div>
               </div>
 
