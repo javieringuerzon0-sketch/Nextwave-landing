@@ -35,12 +35,6 @@ const Navbar: React.FC = () => {
 
         <div className="hidden md:flex items-center gap-8">
           <a
-            href="#features"
-            className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
-          >
-            Propósito
-          </a>
-          <a
             href="#about"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >

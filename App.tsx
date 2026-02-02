@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Navbar from './src/components/layout/Navbar';
 import Footer from './src/components/layout/Footer';
 import Hero from './src/components/sections/Hero';
-import BentoFeatures from './src/components/sections/BentoFeatures';
 import Portfolio from './src/components/sections/Portfolio';
 import About from './src/components/sections/About';
 import TechStack from './src/components/sections/TechStack';
@@ -56,9 +55,8 @@ const App: React.FC = () => {
         ></div>
 
         <div className="relative z-10 w-full">
-          <BentoFeatures />
-          <Portfolio />
           <About />
+          <Portfolio />
           <Testimonials />
           <Pricing />
           <TechStack />
