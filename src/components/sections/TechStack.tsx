@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const TechStack: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const toolRefsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,19 +28,20 @@ const TechStack: React.FC = () => {
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
 
-      // 6 tools positioned at top - fixed positions aligned with tool cards
-      const toolCount = 6;
-      const maxWidth = Math.min(canvas.width * 0.9, 800);
-      const spacing = maxWidth / (toolCount - 1);
-      const startX = (canvas.width - maxWidth) / 2;
-      const connectionY = 105; // Fixed Y position below tool names, all aligned
+      const canvasRect = canvas.getBoundingClientRect();
 
-      // Draw lines from center to each tool with flowing gradient effect
-      for (let i = 0; i < toolCount; i++) {
-        const toolX = startX + i * spacing;
+      // Get actual positions from DOM elements
+      toolRefsRef.current.forEach((toolRef, i) => {
+        if (!toolRef) return;
+
+        const toolRect = toolRef.getBoundingClientRect();
+        // Calculate center X of the tool relative to canvas
+        const toolCenterX = toolRect.left + toolRect.width / 2 - canvasRect.left;
+        // Fixed Y position below tool names
+        const connectionY = 105;
 
         // Main line with gradient
-        const gradient = ctx.createLinearGradient(centerX, centerY, toolX, connectionY);
+        const gradient = ctx.createLinearGradient(centerX, centerY, toolCenterX, connectionY);
         gradient.addColorStop(0, 'rgba(132, 204, 22, 0.3)');
         gradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.4)');
         gradient.addColorStop(1, 'rgba(132, 204, 22, 0.3)');
@@ -50,12 +52,14 @@ const TechStack: React.FC = () => {
 
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
-        ctx.lineTo(toolX, connectionY);
+        ctx.lineTo(toolCenterX, connectionY);
         ctx.stroke();
 
         // Animated flowing gradient overlay
-        const length = Math.sqrt(Math.pow(toolX - centerX, 2) + Math.pow(connectionY - centerY, 2));
-        const angle = Math.atan2(connectionY - centerY, toolX - centerX);
+        const length = Math.sqrt(
+          Math.pow(toolCenterX - centerX, 2) + Math.pow(connectionY - centerY, 2)
+        );
+        const angle = Math.atan2(connectionY - centerY, toolCenterX - centerX);
 
         const flowGradient = ctx.createLinearGradient(
           centerX + Math.cos(angle) * (flowOffset % length),
@@ -74,35 +78,49 @@ const TechStack: React.FC = () => {
 
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
-        ctx.lineTo(toolX, connectionY);
+        ctx.lineTo(toolCenterX, connectionY);
         ctx.stroke();
 
         // Connection point dot with strong glow
-        const outerGlow = ctx.createRadialGradient(toolX, connectionY, 0, toolX, connectionY, 12);
+        const outerGlow = ctx.createRadialGradient(
+          toolCenterX,
+          connectionY,
+          0,
+          toolCenterX,
+          connectionY,
+          12
+        );
         outerGlow.addColorStop(0, 'rgba(132, 204, 22, 0.6)');
         outerGlow.addColorStop(0.5, 'rgba(234, 179, 8, 0.4)');
         outerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
         ctx.fillStyle = outerGlow;
         ctx.beginPath();
-        ctx.arc(toolX, connectionY, 12, 0, Math.PI * 2);
+        ctx.arc(toolCenterX, connectionY, 12, 0, Math.PI * 2);
         ctx.fill();
 
         // Inner bright dot
-        const innerGlow = ctx.createRadialGradient(toolX, connectionY, 0, toolX, connectionY, 4);
+        const innerGlow = ctx.createRadialGradient(
+          toolCenterX,
+          connectionY,
+          0,
+          toolCenterX,
+          connectionY,
+          4
+        );
         innerGlow.addColorStop(0, 'rgba(234, 179, 8, 1)');
         innerGlow.addColorStop(0.7, 'rgba(132, 204, 22, 0.8)');
         innerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
         ctx.fillStyle = innerGlow;
         ctx.beginPath();
-        ctx.arc(toolX, connectionY, 4, 0, Math.PI * 2);
+        ctx.arc(toolCenterX, connectionY, 4, 0, Math.PI * 2);
         ctx.fill();
 
         // Core dot
         ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
         ctx.beginPath();
-        ctx.arc(toolX, connectionY, 2, 0, Math.PI * 2);
+        ctx.arc(toolCenterX, connectionY, 2, 0, Math.PI * 2);
         ctx.fill();
-      }
+      });
 
       flowOffset += 2;
       if (flowOffset > 1000) flowOffset = 0;
@@ -285,7 +303,11 @@ const TechStack: React.FC = () => {
           <div className="absolute top-0 left-0 right-0 flex justify-center items-start">
             <div className="flex justify-between items-center w-full max-w-[800px] px-4">
               {tools.map((tool, idx) => (
-                <div key={idx} className="flex flex-col items-center gap-2 group cursor-pointer">
+                <div
+                  key={idx}
+                  ref={el => (toolRefsRef.current[idx] = el)}
+                  className="flex flex-col items-center gap-2 group cursor-pointer"
+                >
                   <div className="w-14 h-14 bg-white/[0.04] rounded-2xl flex items-center justify-center ring-1 ring-white/10 backdrop-blur-sm text-white/80 hover:ring-lime-500/40 hover:bg-white/[0.08] transition-all duration-300 hover:scale-110 relative">
                     {tool.icon}
                     <div className="absolute inset-0 rounded-2xl bg-lime-500/0 group-hover:bg-lime-500/10 blur-xl transition-all duration-300"></div>
