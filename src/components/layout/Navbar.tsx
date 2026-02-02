@@ -2,12 +2,25 @@ import React, { useState, useEffect } from 'react';
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [mobileMenuOpen]);
+
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
@@ -66,17 +79,78 @@ const Navbar: React.FC = () => {
           </a>
         </div>
 
-        <button className="md:hidden text-white" aria-label="Abrir menú">
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
+        <button
+          className="md:hidden text-white"
+          aria-label="Abrir menú"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? (
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          )}
         </button>
       </nav>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-40 transition-all duration-300 ${
+          mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
+        style={{ top: '72px' }}
+      >
+        <nav className="flex flex-col items-center justify-center h-full gap-8 px-6">
+          <a
+            href="#about"
+            onClick={handleLinkClick}
+            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+          >
+            Tecnología
+          </a>
+          <a
+            href="#portfolio"
+            onClick={handleLinkClick}
+            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+          >
+            Servicios
+          </a>
+          <a
+            href="#testimonials"
+            onClick={handleLinkClick}
+            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+          >
+            Casos
+          </a>
+          <a
+            href="#pricing"
+            onClick={handleLinkClick}
+            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+          >
+            Precios
+          </a>
+          <a
+            href="#techstack"
+            onClick={handleLinkClick}
+            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+          >
+            Herramientas
+          </a>
+        </nav>
+      </div>
     </header>
   );
 };
