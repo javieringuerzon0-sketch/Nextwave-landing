@@ -108,8 +108,8 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Sidebar Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/70 backdrop-blur-md z-[100] transition-all duration-500 ${
-          mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`md:hidden fixed inset-0 bg-black/80 z-[100] transition-opacity duration-300 ${
+          mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
         onClick={() => setMobileMenuOpen(false)}
         style={{ top: '0' }}
@@ -117,38 +117,34 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Sidebar Menu */}
       <aside
-        className={`md:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm z-[101] transition-transform duration-500 ease-out ${
+        className={`md:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm bg-black border-l border-white/20 z-[101] transition-transform duration-300 ease-out shadow-2xl ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{
-          background: 'linear-gradient(to left, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.95))',
-          backdropFilter: 'blur(40px)',
-          WebkitBackdropFilter: 'blur(40px)',
-          boxShadow: '-10px 0 30px rgba(0, 0, 0, 0.5)',
-        }}
       >
-        {/* Solid dark background layer */}
-        <div className="absolute inset-0 bg-black/95 border-l border-white/10" />
-        {/* Gradient Glow Effects */}
-        <div className="absolute top-20 right-10 w-40 h-40 bg-purple-500/15 rounded-full blur-[100px] pointer-events-none animate-pulse z-0" />
-        <div
-          className="absolute bottom-20 left-10 w-40 h-40 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none animate-pulse z-0"
-          style={{ animationDelay: '1s' }}
-        />
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-black to-cyan-900/10 pointer-events-none" />
+
+        {/* Minimal glow effects */}
+        <div className="absolute top-40 right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute bottom-40 left-20 w-32 h-32 bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none" />
 
         {/* Close Button */}
-        <div className="absolute top-6 right-6 z-10">
+        <div className="absolute top-6 right-6 z-50">
           <button
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:rotate-90"
+            onClick={e => {
+              e.stopPropagation();
+              setMobileMenuOpen(false);
+            }}
+            className="w-12 h-12 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:border-white/40 transition-all duration-200 active:scale-95"
             aria-label="Cerrar menú"
+            type="button"
           >
             <svg
-              className="w-5 h-5"
+              className="w-6 h-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="3"
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -156,9 +152,9 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Logo */}
-        <div className="relative pt-8 px-8 mb-12 z-10">
+        <div className="relative pt-20 px-8 mb-8 z-20">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-white to-white/80 rounded-lg flex items-center justify-center shadow-lg">
+            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
               <svg
                 className="w-6 h-6 text-black"
                 viewBox="0 0 24 24"
@@ -171,7 +167,7 @@ const Navbar: React.FC = () => {
             </div>
             <div>
               <span className="text-lg font-bold tracking-tighter text-white block">NextWave</span>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase">
                 Inteligencia Artificial
               </span>
             </div>
@@ -179,37 +175,33 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="relative px-8 space-y-2 z-10">
+        <nav className="relative px-8 space-y-3 z-20">
           {[
             { href: '#about', label: 'Tecnología', icon: '⚡' },
             { href: '#portfolio', label: 'Servicios', icon: '✦' },
             { href: '#testimonials', label: 'Casos', icon: '★' },
             { href: '#pricing', label: 'Precios', icon: '◆' },
             { href: '#techstack', label: 'Herramientas', icon: '◉' },
-          ].map((item, index) => (
+          ].map(item => (
             <a
               key={item.href}
               href={item.href}
               onClick={handleLinkClick}
-              className="mobile-menu-link group relative flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.12] hover:border-white/30 transition-all duration-300 overflow-hidden"
-              style={{ animationDelay: `${index * 50}ms` }}
+              className="group relative flex items-center gap-4 px-5 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-200 active:scale-95"
             >
-              {/* Hover gradient effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
               {/* Icon */}
-              <span className="relative text-2xl opacity-40 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-110 transform">
+              <span className="relative text-xl text-white/60 group-hover:text-white transition-colors duration-200">
                 {item.icon}
               </span>
 
               {/* Text */}
-              <span className="relative text-sm font-bold uppercase tracking-[0.15em] text-white/80 group-hover:text-white transition-colors duration-300">
+              <span className="relative text-sm font-bold uppercase tracking-wider text-white transition-colors duration-200">
                 {item.label}
               </span>
 
               {/* Arrow */}
               <svg
-                className="relative ml-auto w-4 h-4 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
+                className="relative ml-auto w-4 h-4 text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all duration-200"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -217,23 +209,20 @@ const Navbar: React.FC = () => {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
-
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </a>
           ))}
         </nav>
 
         {/* Bottom CTA */}
-        <div className="absolute bottom-8 left-8 right-8 z-10">
+        <div className="absolute bottom-8 left-8 right-8 z-20">
           <a
             href="#project-inquiry"
             onClick={handleLinkClick}
-            className="mobile-cta-btn group relative flex items-center justify-center gap-2 w-full px-6 py-4 bg-white text-black rounded-2xl font-bold text-sm uppercase tracking-wider overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-white/20"
+            className="group relative flex items-center justify-center gap-2 w-full px-6 py-4 bg-white text-black rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-lg"
           >
-            <span className="relative z-10">Iniciar Proyecto</span>
+            <span className="relative">Iniciar Proyecto</span>
             <svg
-              className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+              className="relative w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -241,39 +230,9 @@ const Navbar: React.FC = () => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
-
-            {/* Animated gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-purple-100 to-white bg-[length:200%_100%] animate-shimmer" />
           </a>
         </div>
       </aside>
-
-      <style>{`
-        @keyframes slideInFromRight {
-          from {
-            opacity: 0;
-            transform: translateX(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-
-        .mobile-menu-link {
-          animation: slideInFromRight 0.4s ease-out forwards;
-          opacity: 0;
-        }
-
-        .mobile-cta-btn .animate-shimmer {
-          animation: shimmer 3s linear infinite;
-        }
-      `}</style>
     </header>
   );
 };
