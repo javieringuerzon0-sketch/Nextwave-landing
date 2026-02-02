@@ -16,13 +16,34 @@ const HomePage: React.FC = () => {
   // Handle hash navigation from other pages
   useEffect(() => {
     if (location.hash) {
-      // Wait for lazy loaded components to render
-      setTimeout(() => {
+      const scrollToSection = () => {
         const element = document.querySelector(location.hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Scroll to element with offset for navbar
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+          return true;
         }
-      }, 100);
+        return false;
+      };
+
+      // Try immediately
+      if (!scrollToSection()) {
+        // If not found, retry with increasing delays for lazy-loaded sections
+        const delays = [100, 300, 600, 1000];
+        delays.forEach(delay => {
+          setTimeout(scrollToSection, delay);
+        });
+      }
+    } else {
+      // No hash, scroll to top
+      window.scrollTo(0, 0);
     }
   }, [location]);
 
