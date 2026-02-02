@@ -28,79 +28,136 @@ const About: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Lado Izquierdo: Mockup de Instagram Feed */}
-          <div className="relative group">
-            {/* Container del mockup */}
-            <div className="relative bg-gradient-to-br from-gray-900/50 to-black/50 rounded-3xl p-6 border border-white/10 shadow-2xl backdrop-blur-sm hover:border-white/20 transition-all duration-500">
-              {/* Header con avatares */}
-              <div className="flex items-center gap-3 mb-4 pb-4 border-white/10">
-                <span className="text-xs font-bold text-white/50 uppercase tracking-wider">
-                  Últimos
-                </span>
-                <div className="flex -space-x-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 border-2 border-black"></div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-orange-500 border-2 border-black"></div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-teal-500 border-2 border-black"></div>
-                </div>
-              </div>
+          {/* Lado Izquierdo: Mockup de Celular con Instagram Feed */}
+          <div className="relative group flex justify-center">
+            {/* Glow Effect detrás del teléfono */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-blue-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-              {/* Imagen principal del feed */}
-              <div className="relative rounded-2xl overflow-hidden mb-4 aspect-[4/5] group/image">
-                <img
-                  src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=800&q=80"
-                  alt="Instagram Feed"
-                  className="w-full h-full object-cover group-hover/image:scale-105 transition-transform duration-700"
-                />
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              </div>
+            {/* Frame del Celular */}
+            <div className="relative w-[340px] bg-black rounded-[3rem] border-8 border-gray-800 shadow-2xl overflow-hidden transform group-hover:scale-105 transition-all duration-500">
+              {/* Notch del iPhone */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-20"></div>
 
-              {/* Interacciones */}
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
+              {/* Pantalla del teléfono */}
+              <div className="relative bg-black">
+                {/* Header de Instagram */}
+                <div className="px-4 py-3 flex items-center justify-between bg-black border-b border-gray-800">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-500"></div>
+                    <span className="text-sm font-semibold text-white">nextwave_ia</span>
+                  </div>
                   <svg
-                    className="w-6 h-6 text-white/70"
+                    className="w-6 h-6 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth="2"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                      strokeWidth="2"
+                      d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
                     />
                   </svg>
-                  <span className="text-sm text-white/70">2.4K</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="w-6 h-6 text-white/70"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                  <span className="text-sm text-white/70">340</span>
+
+                {/* Imagen del Feed */}
+                <div className="relative w-full aspect-square overflow-hidden">
+                  <img
+                    src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d50f4a31-1a94-4495-b28b-7fb99a6f6730_3840w.jpg"
+                    alt="Instagram Feed"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+
+                {/* Botones de interacción */}
+                <div className="px-4 py-3 bg-black">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-4">
+                      {/* Like */}
+                      <button className="transform hover:scale-110 transition-transform duration-200 group/like">
+                        <svg
+                          className="w-7 h-7 text-white group-hover/like:text-red-500 transition-colors"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                          />
+                        </svg>
+                      </button>
+                      {/* Comment */}
+                      <button className="transform hover:scale-110 transition-transform duration-200 group/comment">
+                        <svg
+                          className="w-7 h-7 text-white group-hover/comment:text-blue-500 transition-colors"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                          />
+                        </svg>
+                      </button>
+                      {/* Share */}
+                      <button className="transform hover:scale-110 transition-transform duration-200">
+                        <svg
+                          className="w-7 h-7 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    {/* Bookmark */}
+                    <button className="transform hover:scale-110 transition-transform duration-200">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Likes count */}
+                  <div className="text-sm font-semibold text-white mb-1">2,847 Me gusta</div>
+
+                  {/* Caption */}
+                  <div className="text-sm text-white">
+                    <span className="font-semibold">nextwave_ia</span> Creando el futuro digital ✨
+                  </div>
                 </div>
               </div>
-
-              {/* Shine Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none rounded-3xl"></div>
             </div>
           </div>
 
           {/* Lado Derecho: Contenido */}
           <div className="space-y-8">
-            {/* Título Principal */}
+            {/* Título Principal - Reducido */}
             <div className="space-y-4">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.1]">
                 Historias sociales que
                 <br />
                 convierten visitantes en
@@ -115,30 +172,32 @@ const About: React.FC = () => {
               </p>
             </div>
 
-            {/* Estadísticas */}
+            {/* Estadísticas - Mejores animaciones */}
             <div className="space-y-6 pt-4">
               {stats.map((stat, index) => (
                 <div
                   key={index}
-                  className="flex gap-4 group/stat hover:translate-x-2 transition-transform duration-300"
+                  className="flex gap-4 group/stat hover:translate-x-3 transition-all duration-300 cursor-pointer"
                 >
                   {/* Número grande */}
                   <div className="flex-shrink-0">
-                    <div className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                    <div className="text-4xl md:text-5xl font-bold text-white tracking-tight group-hover/stat:scale-110 group-hover/stat:text-transparent group-hover/stat:bg-clip-text group-hover/stat:bg-gradient-to-r group-hover/stat:from-blue-400 group-hover/stat:via-purple-400 group-hover/stat:to-pink-400 transition-all duration-300">
                       {stat.number}
                     </div>
                   </div>
 
                   {/* Contenido */}
                   <div className="flex-1 pt-2">
-                    <div className="text-xs font-bold text-white/40 uppercase tracking-widest mb-1">
+                    <div className="text-xs font-bold text-white/40 uppercase tracking-widest mb-1 group-hover/stat:text-white/60 transition-colors duration-300">
                       {stat.label}
                     </div>
-                    <p className="text-sm text-white/60 leading-relaxed">{stat.description}</p>
+                    <p className="text-sm text-white/60 leading-relaxed group-hover/stat:text-white/80 transition-colors duration-300">
+                      {stat.description}
+                    </p>
                   </div>
 
-                  {/* Indicator line */}
-                  <div className="w-1 h-full bg-gradient-to-b from-white/20 to-transparent group-hover/stat:from-blue-500 group-hover/stat:to-purple-500 transition-all duration-300 rounded-full"></div>
+                  {/* Indicator line - Más animado */}
+                  <div className="w-1 h-full bg-gradient-to-b from-white/20 to-transparent group-hover/stat:from-blue-500 group-hover/stat:via-purple-500 group-hover/stat:to-pink-500 group-hover/stat:w-2 transition-all duration-300 rounded-full group-hover/stat:shadow-lg group-hover/stat:shadow-purple-500/50"></div>
                 </div>
               ))}
             </div>

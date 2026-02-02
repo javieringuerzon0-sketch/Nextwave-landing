@@ -57,9 +57,9 @@ const App: React.FC = () => {
         <div className="relative z-10 w-full">
           <BentoFeatures />
           <Portfolio />
-          <About />
           <Testimonials />
           <Pricing />
+          <About />
           <Contact />
         </div>
       </main>
