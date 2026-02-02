@@ -44,9 +44,9 @@ const About: React.FC = () => {
                 <span className="text-white/100">resultados hermosos.</span>
               </h2>
               <p className="text-base text-white/50 leading-relaxed max-w-xl">
-                NextWave IA combina tecnología de vanguardia con principios de diseño pensados para
-                crear experiencias de impacto. Empoderamos a las empresas para llevar su visión al
-                siguiente nivel digital.
+                Trabajamos con las tecnologías y plataformas más modernas del mercado para cumplir y
+                superar todas tus expectativas. Siempre usamos las últimas tendencias digitales para
+                crear tu proyecto.
               </p>
             </div>
 
