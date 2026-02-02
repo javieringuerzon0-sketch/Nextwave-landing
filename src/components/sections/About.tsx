@@ -34,7 +34,7 @@ const About: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-blue-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
             {/* Frame del Celular */}
-            <div className="relative w-[340px] bg-black rounded-[3rem] border-8 border-gray-800 shadow-2xl overflow-hidden transform group-hover:scale-105 transition-all duration-500">
+            <div className="relative w-[380px] bg-black rounded-[3rem] border-8 border-gray-800 shadow-2xl overflow-hidden transform group-hover:scale-105 transition-all duration-500">
               {/* Notch del iPhone */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-7 bg-black rounded-b-3xl z-20"></div>
 
@@ -181,7 +181,7 @@ const About: React.FC = () => {
                 >
                   {/* Número grande */}
                   <div className="flex-shrink-0">
-                    <div className="text-4xl md:text-5xl font-bold text-white tracking-tight group-hover/stat:scale-110 group-hover/stat:text-transparent group-hover/stat:bg-clip-text group-hover/stat:bg-gradient-to-r group-hover/stat:from-blue-400 group-hover/stat:via-purple-400 group-hover/stat:to-pink-400 transition-all duration-300">
+                    <div className="text-3xl md:text-4xl font-bold text-white tracking-tight group-hover/stat:scale-110 group-hover/stat:text-transparent group-hover/stat:bg-clip-text group-hover/stat:bg-gradient-to-r group-hover/stat:from-blue-400 group-hover/stat:via-purple-400 group-hover/stat:to-pink-400 transition-all duration-300">
                       {stat.number}
                     </div>
                   </div>
