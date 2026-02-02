@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
 
             <div className="pt-4">
               <a
-                href="#contact"
+                href="#project-inquiry"
                 className="group relative inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-black rounded-full text-xs font-bold uppercase tracking-widest overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
               >
                 <span className="relative z-10">Iniciar Proyecto</span>

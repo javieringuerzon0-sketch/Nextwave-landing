@@ -1,14 +1,23 @@
 import React from 'react';
 
 const ProjectInquiry: React.FC = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Redirigir a Calendly
+    window.open('https://calendly.com/app/scheduling/meeting_types/user/me', '_blank');
+  };
+
   return (
-    <section className="min-h-screen flex sm:p-6 lg:p-8 pt-4 pr-4 pb-4 pl-4 items-center justify-center bg-black">
+    <section
+      id="project-inquiry"
+      className="min-h-screen flex sm:p-6 lg:p-8 pt-4 pr-4 pb-4 pl-4 items-center justify-center bg-black"
+    >
       {/* Main Card Container */}
       <div className="w-full max-w-4xl rounded-[2.5rem] backdrop-blur-xl relative shadow-2xl bg-slate-950/50 shadow-black/80 border border-white/10">
         {/* Radial Gradient Overlay inside card */}
         <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_50%)] pointer-events-none"></div>
 
-        <div className="relative p-8 sm:p-12 z-10">
+        <form onSubmit={handleSubmit} className="relative p-8 sm:p-12 z-10">
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
             <div className="flex items-center gap-5">
@@ -328,7 +337,10 @@ const ProjectInquiry: React.FC = () => {
             </p>
 
             {/* Submit Button */}
-            <button className="group inline-flex overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] rounded-full pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative items-center justify-center">
+            <button
+              type="submit"
+              className="group inline-flex overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] rounded-full pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative items-center justify-center"
+            >
               <span className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#ffffff_100%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
               <span className="absolute inset-0 rounded-full bg-zinc-800 transition-opacity duration-300 group-hover:opacity-0"></span>
               <span className="flex items-center justify-center gap-2 uppercase transition-colors duration-300 group-hover:text-white text-xs font-medium text-zinc-400 tracking-widest bg-gradient-to-b from-zinc-800 to-zinc-950 w-full h-full rounded-full pt-2.5 pr-6 pb-2.5 pl-6 relative shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]">
@@ -351,7 +363,7 @@ const ProjectInquiry: React.FC = () => {
               </span>
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   );
