@@ -1,10 +1,67 @@
 import React from 'react';
+import { supabase } from '../../lib/supabase';
 
 const ProjectInquiry: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [selectedServices, setSelectedServices] = React.useState<string[]>([]);
+  const [selectedGoals, setSelectedGoals] = React.useState<string[]>([]);
+  const [details, setDetails] = React.useState('');
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const toggleService = (service: string) => {
+    setSelectedServices(prev =>
+      prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service]
+    );
+  };
+
+  const toggleGoal = (goal: string) => {
+    setSelectedGoals(prev =>
+      prev.includes(goal) ? prev.filter(g => g !== goal) : [...prev, goal]
+    );
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirigir a Calendly
-    window.open('https://calendly.com/app/scheduling/meeting_types/user/me', '_blank');
+    setIsSubmitting(true);
+
+    try {
+      // Guardar en Supabase
+      const { error } = await supabase.from('project_inquiries').insert([
+        {
+          name,
+          email,
+          services: selectedServices,
+          goals: selectedGoals,
+          details,
+          metadata: {
+            timestamp: new Date().toISOString(),
+            user_agent: navigator.userAgent,
+          },
+        },
+      ]);
+
+      if (error) {
+        console.error('Error saving to Supabase:', error);
+        alert('Hubo un error al enviar tu consulta. Por favor intenta nuevamente.');
+        return;
+      }
+
+      // Si se guardó exitosamente, redirigir a Calendly
+      window.open('https://calendly.com/app/scheduling/meeting_types/user/me', '_blank');
+
+      // Limpiar formulario
+      setName('');
+      setEmail('');
+      setSelectedServices([]);
+      setSelectedGoals([]);
+      setDetails('');
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      alert('Hubo un error inesperado. Por favor intenta nuevamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -75,6 +132,9 @@ const ProjectInquiry: React.FC = () => {
               <input
                 type="text"
                 placeholder="Nombre"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                required
                 className="w-full bg-transparent text-sm placeholder-slate-500 py-4 pl-14 pr-4 rounded-2xl focus:outline-none focus:bg-slate-900/60 transition-all text-slate-200"
               />
             </div>
@@ -98,6 +158,9 @@ const ProjectInquiry: React.FC = () => {
               <input
                 type="email"
                 placeholder="Correo electrónico"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
                 className="w-full bg-transparent text-sm placeholder-slate-500 py-4 pl-14 pr-4 rounded-2xl focus:outline-none focus:bg-slate-900/60 transition-all text-slate-200"
               />
             </div>
@@ -119,7 +182,15 @@ const ProjectInquiry: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {/* Creación de página web */}
-              <button className="group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full bg-slate-900/40 hover:bg-slate-800/60 border border-white/5">
+              <button
+                type="button"
+                onClick={() => toggleService('Creación de Página Web')}
+                className={`group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full ${
+                  selectedServices.includes('Creación de Página Web')
+                    ? 'bg-sky-900/40 border-sky-500/50'
+                    : 'bg-slate-900/40 hover:bg-slate-800/60 border-white/5'
+                } border`}
+              >
                 <div className="flex group-hover:scale-110 transition-transform duration-300 text-sky-200 bg-slate-800/50 w-10 h-10 border-white/5 border rounded-xl mb-1 items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +218,15 @@ const ProjectInquiry: React.FC = () => {
               </button>
 
               {/* Marketing */}
-              <button className="group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full bg-slate-900/40 hover:bg-slate-800/60 border border-white/5">
+              <button
+                type="button"
+                onClick={() => toggleService('Marketing')}
+                className={`group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full ${
+                  selectedServices.includes('Marketing')
+                    ? 'bg-sky-900/40 border-sky-500/50'
+                    : 'bg-slate-900/40 hover:bg-slate-800/60 border-white/5'
+                } border`}
+              >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:text-sky-200 transition-colors mb-1 group-hover:scale-110 duration-300 border bg-slate-800/50 text-slate-400 border-white/5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +252,15 @@ const ProjectInquiry: React.FC = () => {
               </button>
 
               {/* Diseño de App Web */}
-              <button className="group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full bg-slate-900/40 hover:bg-slate-800/60 border border-white/5">
+              <button
+                type="button"
+                onClick={() => toggleService('Diseño de App Web')}
+                className={`group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full ${
+                  selectedServices.includes('Diseño de App Web')
+                    ? 'bg-sky-900/40 border-sky-500/50'
+                    : 'bg-slate-900/40 hover:bg-slate-800/60 border-white/5'
+                } border`}
+              >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:text-sky-200 transition-colors mb-1 group-hover:scale-110 duration-300 border bg-slate-800/50 text-slate-400 border-white/5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +286,15 @@ const ProjectInquiry: React.FC = () => {
               </button>
 
               {/* Diseño de App Móviles */}
-              <button className="group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full bg-slate-900/40 hover:bg-slate-800/60 border border-white/5">
+              <button
+                type="button"
+                onClick={() => toggleService('Diseño de App Móviles')}
+                className={`group relative flex flex-col items-start justify-between gap-3 p-5 rounded-2xl text-left transition-all duration-300 h-full ${
+                  selectedServices.includes('Diseño de App Móviles')
+                    ? 'bg-sky-900/40 border-sky-500/50'
+                    : 'bg-slate-900/40 hover:bg-slate-800/60 border-white/5'
+                } border`}
+              >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:text-sky-200 transition-colors mb-1 group-hover:scale-110 duration-300 border bg-slate-800/50 text-slate-400 border-white/5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -227,7 +322,15 @@ const ProjectInquiry: React.FC = () => {
               </button>
 
               {/* Pregunta Personalizada */}
-              <button className="sm:col-span-2 group relative flex flex-row items-center justify-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 h-full bg-slate-900/40 hover:bg-slate-800/60 border border-white/5">
+              <button
+                type="button"
+                onClick={() => toggleService('Consulta Personalizada')}
+                className={`sm:col-span-2 group relative flex flex-row items-center justify-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 h-full ${
+                  selectedServices.includes('Consulta Personalizada')
+                    ? 'bg-sky-900/40 border-sky-500/50'
+                    : 'bg-slate-900/40 hover:bg-slate-800/60 border-white/5'
+                } border`}
+              >
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:text-sky-200 transition-colors border bg-slate-800/50 text-slate-400 border-white/5">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -269,33 +372,34 @@ const ProjectInquiry: React.FC = () => {
               Objetivos Principales
             </h3>
             <div className="flex flex-wrap gap-3">
-              <button className="selected group flex items-center gap-2 py-2.5 px-5 rounded-full text-left transition-all bg-slate-900/40 hover:bg-slate-800/60">
-                <span className="text-xs font-medium text-sky-100">Aumentar Ingresos</span>
-              </button>
-
-              <button className="group flex items-center gap-2 transition-all py-2.5 px-5 rounded-full text-left bg-slate-900/40 hover:bg-slate-800/60">
-                <span className="text-xs font-medium group-hover:text-slate-200 text-slate-400">
-                  Mejorar Conversión
-                </span>
-              </button>
-
-              <button className="group flex items-center gap-2 transition-all py-2.5 px-5 rounded-full text-left bg-slate-900/40 hover:bg-slate-800/60">
-                <span className="text-xs font-medium group-hover:text-slate-200 text-slate-400">
-                  Rediseño de Marca
-                </span>
-              </button>
-
-              <button className="group flex items-center gap-2 transition-all py-2.5 px-5 rounded-full text-left bg-slate-900/40 hover:bg-slate-800/60">
-                <span className="text-xs font-medium group-hover:text-slate-200 text-slate-400">
-                  Lanzar Producto
-                </span>
-              </button>
-
-              <button className="group flex items-center gap-2 transition-all py-2.5 px-5 rounded-full text-left bg-slate-900/40 hover:bg-slate-800/60">
-                <span className="text-xs font-medium group-hover:text-slate-200 text-slate-400">
-                  Nuevo Mercado
-                </span>
-              </button>
+              {[
+                'Aumentar Ingresos',
+                'Mejorar Conversión',
+                'Rediseño de Marca',
+                'Lanzar Producto',
+                'Nuevo Mercado',
+              ].map(goal => (
+                <button
+                  key={goal}
+                  type="button"
+                  onClick={() => toggleGoal(goal)}
+                  className={`group flex items-center gap-2 py-2.5 px-5 rounded-full text-left transition-all ${
+                    selectedGoals.includes(goal)
+                      ? 'bg-sky-900/40 border border-sky-500/50'
+                      : 'bg-slate-900/40 hover:bg-slate-800/60'
+                  }`}
+                >
+                  <span
+                    className={`text-xs font-medium ${
+                      selectedGoals.includes(goal)
+                        ? 'text-sky-100'
+                        : 'text-slate-400 group-hover:text-slate-200'
+                    }`}
+                  >
+                    {goal}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
 
@@ -307,6 +411,8 @@ const ProjectInquiry: React.FC = () => {
             <div className="rounded-2xl transition-all duration-300 bg-slate-900/40 border border-white/10 hover:border-white/20">
               <textarea
                 placeholder="Describe tu proyecto, cronograma y expectativas de presupuesto..."
+                value={details}
+                onChange={e => setDetails(e.target.value)}
                 className="w-full h-36 bg-transparent text-sm placeholder-slate-500 p-6 rounded-2xl focus:outline-none focus:bg-slate-900/60 resize-none transition-all text-slate-200"
               ></textarea>
             </div>
@@ -339,12 +445,15 @@ const ProjectInquiry: React.FC = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="group inline-flex overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] rounded-full pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative items-center justify-center"
+              disabled={isSubmitting}
+              className="group inline-flex overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] rounded-full pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#ffffff_100%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
               <span className="absolute inset-0 rounded-full bg-zinc-800 transition-opacity duration-300 group-hover:opacity-0"></span>
               <span className="flex items-center justify-center gap-2 uppercase transition-colors duration-300 group-hover:text-white text-xs font-medium text-zinc-400 tracking-widest bg-gradient-to-b from-zinc-800 to-zinc-950 w-full h-full rounded-full pt-2.5 pr-6 pb-2.5 pl-6 relative shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]">
-                <span className="z-10 relative">Enviar Consulta</span>
+                <span className="z-10 relative">
+                  {isSubmitting ? 'Enviando...' : 'Enviar Consulta'}
+                </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
