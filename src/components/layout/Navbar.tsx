@@ -106,51 +106,166 @@ const Navbar: React.FC = () => {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Sidebar Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-40 transition-all duration-300 ${
+        className={`md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-all duration-500 ${
           mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
-        style={{ top: '72px' }}
+        onClick={() => setMobileMenuOpen(false)}
+        style={{ top: '0' }}
+      />
+
+      {/* Mobile Sidebar Menu */}
+      <aside
+        className={`md:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm bg-black/40 backdrop-blur-3xl border-l border-white/10 z-50 transition-transform duration-500 ease-out shadow-2xl ${
+          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
-        <nav className="flex flex-col items-center justify-center h-full gap-8 px-6">
-          <a
-            href="#about"
-            onClick={handleLinkClick}
-            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+        {/* Gradient Glow Effects */}
+        <div className="absolute top-20 right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-[100px] pointer-events-none animate-pulse" />
+        <div
+          className="absolute bottom-20 left-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-[100px] pointer-events-none animate-pulse"
+          style={{ animationDelay: '1s' }}
+        />
+
+        {/* Close Button */}
+        <div className="absolute top-6 right-6">
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:rotate-90"
+            aria-label="Cerrar menú"
           >
-            Tecnología
-          </a>
-          <a
-            href="#portfolio"
-            onClick={handleLinkClick}
-            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
-          >
-            Servicios
-          </a>
-          <a
-            href="#testimonials"
-            onClick={handleLinkClick}
-            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
-          >
-            Casos
-          </a>
-          <a
-            href="#pricing"
-            onClick={handleLinkClick}
-            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
-          >
-            Precios
-          </a>
-          <a
-            href="#techstack"
-            onClick={handleLinkClick}
-            className="text-lg font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
-          >
-            Herramientas
-          </a>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Logo */}
+        <div className="pt-8 px-8 mb-12">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-white to-white/80 rounded-lg flex items-center justify-center shadow-lg">
+              <svg
+                className="w-6 h-6 text-black"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <span className="text-lg font-bold tracking-tighter text-white block">NextWave</span>
+              <span className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase">
+                Inteligencia Artificial
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="px-8 space-y-2">
+          {[
+            { href: '#about', label: 'Tecnología', icon: '⚡' },
+            { href: '#portfolio', label: 'Servicios', icon: '✦' },
+            { href: '#testimonials', label: 'Casos', icon: '★' },
+            { href: '#pricing', label: 'Precios', icon: '◆' },
+            { href: '#techstack', label: 'Herramientas', icon: '◉' },
+          ].map((item, index) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={handleLinkClick}
+              className="mobile-menu-link group relative flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300 overflow-hidden"
+              style={{ animationDelay: `${index * 50}ms` }}
+            >
+              {/* Hover gradient effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Icon */}
+              <span className="relative text-2xl opacity-40 group-hover:opacity-100 transition-opacity duration-300 group-hover:scale-110 transform">
+                {item.icon}
+              </span>
+
+              {/* Text */}
+              <span className="relative text-sm font-bold uppercase tracking-[0.15em] text-white/60 group-hover:text-white transition-colors duration-300">
+                {item.label}
+              </span>
+
+              {/* Arrow */}
+              <svg
+                className="relative ml-auto w-4 h-4 text-white/30 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+
+              {/* Shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            </a>
+          ))}
         </nav>
-      </div>
+
+        {/* Bottom CTA */}
+        <div className="absolute bottom-8 left-8 right-8">
+          <a
+            href="#project-inquiry"
+            onClick={handleLinkClick}
+            className="mobile-cta-btn group relative flex items-center justify-center gap-2 w-full px-6 py-4 bg-white text-black rounded-2xl font-bold text-sm uppercase tracking-wider overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-white/20"
+          >
+            <span className="relative z-10">Iniciar Proyecto</span>
+            <svg
+              className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+
+            {/* Animated gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-purple-100 to-white bg-[length:200%_100%] animate-shimmer" />
+          </a>
+        </div>
+      </aside>
+
+      <style>{`
+        @keyframes slideInFromRight {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+
+        .mobile-menu-link {
+          animation: slideInFromRight 0.4s ease-out forwards;
+          opacity: 0;
+        }
+
+        .mobile-cta-btn .animate-shimmer {
+          animation: shimmer 3s linear infinite;
+        }
+      `}</style>
     </header>
   );
 };
