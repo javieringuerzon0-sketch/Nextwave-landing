@@ -182,15 +182,15 @@ const Portfolio: React.FC = () => {
             href="https://wa.me/526122893294"
             target="_blank"
             rel="noopener noreferrer"
-            className="portfolio-gradient-btn inline-flex items-center gap-2 px-8 py-4 rounded-full bg-black text-white text-sm font-semibold transition-all duration-500 hover:scale-105 group"
+            className="apple-cta-primary group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black rounded-full text-sm font-semibold transition-all duration-500"
           >
             Contactar a un profesional
             <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10"
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="2.5"
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

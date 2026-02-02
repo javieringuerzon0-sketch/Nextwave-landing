@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
@@ -52,20 +53,21 @@ const About: React.FC = () => {
 
             {/* Botón Principal (Estilo de la imagen) */}
             <div className="pt-2">
-              <button className="about-gradient-btn group relative inline-flex items-center gap-3 px-8 py-3.5 bg-black text-white rounded-full text-sm font-bold transition-all duration-500 hover:scale-105 overflow-visible">
-                <span className="relative z-10">Descubre Nuestra Historia</span>
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 relative z-10">
-                  <svg
-                    className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                  >
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </span>
-              </button>
+              <Link
+                to="/about"
+                className="apple-cta-primary group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black rounded-full text-sm font-semibold transition-all duration-500"
+              >
+                <span>Descubre Nuestra Historia</span>
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              </Link>
             </div>
 
             {/* Trilogía de Tarjetas (Ajuste de tamaño intermedio) */}

@@ -51,11 +51,11 @@ const Hero: React.FC = () => {
             <div className="pt-4">
               <a
                 href="#project-inquiry"
-                className="hero-gradient-btn group relative inline-flex items-center justify-center gap-2 px-7 py-3 bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest overflow-visible transition-all duration-500 hover:scale-105"
+                className="apple-cta-primary group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-black rounded-full text-sm font-semibold transition-all duration-500"
               >
-                <span className="relative z-10">Iniciar Proyecto</span>
+                <span>Iniciar Proyecto</span>
                 <svg
-                  className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-1 transition-all duration-300"
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

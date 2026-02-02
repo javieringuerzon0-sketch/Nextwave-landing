@@ -304,10 +304,11 @@ const TechStack: React.FC = () => {
 
         {/* Heading */}
         <h1 className="text-center text-4xl md:text-6xl font-semibold tracking-tight text-white">
-          Conecta todo tu stack tecnológico
+          Conectamos con todo este stack tecnológico
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-center text-base md:text-lg text-white/70 font-normal">
-          Una plataforma, infinitas posibilidades. Sincroniza con todas tus herramientas favoritas.
+          Somos desarrolladores full-stack especializados en construir soluciones completas desde el
+          frontend hasta el backend.
         </p>
 
         {/* Main visualization container */}

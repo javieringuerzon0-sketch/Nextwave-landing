@@ -482,22 +482,20 @@ const ProjectInquiry: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inquiry-gradient-btn group inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-black text-white text-xs font-medium uppercase tracking-widest transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed overflow-visible"
+              className="apple-cta-primary group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-black rounded-full text-sm font-semibold transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="z-10 relative">
-                {isSubmitting ? 'Enviando...' : 'Enviar Consulta'}
-              </span>
+              <span>{isSubmitting ? 'Enviando...' : 'Enviar Consulta'}</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5"
+                className="transition-transform duration-300 group-hover:translate-x-0.5"
               >
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
