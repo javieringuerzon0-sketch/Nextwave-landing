@@ -22,7 +22,9 @@
       "Bash(npx husky init)",
       "Bash(npm uninstall:*)",
       "WebFetch(domain:www.aura.build)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git revert:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

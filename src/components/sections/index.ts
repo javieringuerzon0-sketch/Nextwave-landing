@@ -1,9 +1,0 @@
-export { default as Hero } from './Hero';
-export { default as About } from './About';
-export { default as BentoFeatures } from './BentoFeatures';
-export { default as Portfolio } from './Portfolio';
-export { default as Contact } from './Contact';
-export { default as CTA } from './CTA';
-export { default as FeatureStats } from './FeatureStats';
-export { default as Pricing } from './Pricing';
-export { default as Testimonials } from './Testimonials';

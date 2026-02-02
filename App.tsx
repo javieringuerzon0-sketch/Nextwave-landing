@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import Navbar from './src/components/layout/Navbar';
 import Footer from './src/components/layout/Footer';
 import Hero from './src/components/sections/Hero';
-import Portfolio from './src/components/sections/Portfolio';
-import About from './src/components/sections/About';
-import TechStack from './src/components/sections/TechStack';
-import Testimonials from './src/components/sections/Testimonials';
-import Pricing from './src/components/sections/Pricing';
-import ProjectInquiry from './src/components/sections/ProjectInquiry';
+
+// Lazy load sections below the fold for better performance
+const Portfolio = lazy(() => import('./src/components/sections/Portfolio'));
+const About = lazy(() => import('./src/components/sections/About'));
+const TechStack = lazy(() => import('./src/components/sections/TechStack'));
+const Testimonials = lazy(() => import('./src/components/sections/Testimonials'));
+const Pricing = lazy(() => import('./src/components/sections/Pricing'));
+const ProjectInquiry = lazy(() => import('./src/components/sections/ProjectInquiry'));
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -55,12 +57,14 @@ const App: React.FC = () => {
         ></div>
 
         <div className="relative z-10 w-full">
-          <About />
-          <Portfolio />
-          <Testimonials />
-          <Pricing />
-          <TechStack />
-          <ProjectInquiry />
+          <Suspense fallback={<div className="min-h-screen" />}>
+            <About />
+            <Portfolio />
+            <Testimonials />
+            <Pricing />
+            <TechStack />
+            <ProjectInquiry />
+          </Suspense>
         </div>
       </main>
 
