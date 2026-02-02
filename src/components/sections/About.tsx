@@ -52,9 +52,9 @@ const About: React.FC = () => {
 
             {/* Botón Principal (Estilo de la imagen) */}
             <div className="pt-2">
-              <button className="group relative inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-[#ffcd75] text-black rounded-full text-sm font-bold transition-all duration-300 hover:shadow-[0_10px_40px_-10px_rgba(129,140,248,0.5)]">
-                Descubre Nuestra Historia
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-black/10">
+              <button className="about-gradient-btn group relative inline-flex items-center gap-3 px-8 py-3.5 bg-black text-white rounded-full text-sm font-bold transition-all duration-500 hover:scale-105 overflow-visible">
+                <span className="relative z-10">Descubre Nuestra Historia</span>
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 relative z-10">
                   <svg
                     className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     fill="none"
@@ -91,6 +91,60 @@ const About: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+
+        .about-gradient-btn {
+          position: relative;
+          border: 2px solid transparent;
+          background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(90deg,
+              #a855f7,
+              #ec4899,
+              #f59e0b,
+              #10b981,
+              #3b82f6,
+              #8b5cf6,
+              #a855f7
+            ) border-box;
+          box-shadow:
+            0 0 20px rgba(168, 85, 247, 0.4),
+            0 0 40px rgba(236, 72, 153, 0.3),
+            0 0 60px rgba(59, 130, 246, 0.2);
+        }
+
+        .about-gradient-btn::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 9999px;
+          padding: 2px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+          );
+          background-size: 200% 100%;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          animation: shimmer 3s ease-in-out infinite;
+          opacity: 0.6;
+        }
+
+        .about-gradient-btn:hover {
+          box-shadow:
+            0 0 30px rgba(168, 85, 247, 0.6),
+            0 0 60px rgba(236, 72, 153, 0.5),
+            0 0 90px rgba(59, 130, 246, 0.4);
+        }
+      `}</style>
     </section>
   );
 };
