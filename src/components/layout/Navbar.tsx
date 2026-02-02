@@ -58,6 +58,12 @@ const Navbar: React.FC = () => {
           >
             Precios
           </a>
+          <a
+            href="#techstack"
+            className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+          >
+            Herramientas
+          </a>
         </div>
 
         <button className="md:hidden text-white" aria-label="Abrir menú">
