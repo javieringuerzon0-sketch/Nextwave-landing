@@ -19,7 +19,7 @@ const TechStack: React.FC = () => {
     window.addEventListener('resize', updateSize);
 
     let animationFrame: number;
-    let offset = 0;
+    let flowOffset = 0;
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -27,45 +27,85 @@ const TechStack: React.FC = () => {
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
 
-      // 6 tools positioned at top
+      // 6 tools positioned at top - fixed positions aligned with tool cards
       const toolCount = 6;
       const maxWidth = Math.min(canvas.width * 0.9, 800);
       const spacing = maxWidth / (toolCount - 1);
       const startX = (canvas.width - maxWidth) / 2;
-      const toolY = 80; // Bottom of each tool card
+      const connectionY = 105; // Fixed Y position below tool names, all aligned
 
-      // Draw lines from center to each tool
+      // Draw lines from center to each tool with flowing gradient effect
       for (let i = 0; i < toolCount; i++) {
         const toolX = startX + i * spacing;
 
-        // Gradient from center (green) to tool (yellow)
-        const gradient = ctx.createLinearGradient(centerX, centerY, toolX, toolY);
-        gradient.addColorStop(0, 'rgba(132, 204, 22, 0.6)'); // lime-500
-        gradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.6)'); // yellow-500
-        gradient.addColorStop(1, 'rgba(132, 204, 22, 0.4)'); // lime-500
+        // Main line with gradient
+        const gradient = ctx.createLinearGradient(centerX, centerY, toolX, connectionY);
+        gradient.addColorStop(0, 'rgba(132, 204, 22, 0.3)');
+        gradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.4)');
+        gradient.addColorStop(1, 'rgba(132, 204, 22, 0.3)');
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 2;
-        ctx.setLineDash([10, 10]);
-        ctx.lineDashOffset = -offset;
+        ctx.setLineDash([]);
 
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
-        ctx.lineTo(toolX, toolY);
+        ctx.lineTo(toolX, connectionY);
         ctx.stroke();
 
-        // Small glowing dot at tool connection point
-        const dotGradient = ctx.createRadialGradient(toolX, toolY, 0, toolX, toolY, 6);
-        dotGradient.addColorStop(0, 'rgba(132, 204, 22, 0.8)');
-        dotGradient.addColorStop(1, 'rgba(132, 204, 22, 0)');
-        ctx.fillStyle = dotGradient;
+        // Animated flowing gradient overlay
+        const length = Math.sqrt(Math.pow(toolX - centerX, 2) + Math.pow(connectionY - centerY, 2));
+        const angle = Math.atan2(connectionY - centerY, toolX - centerX);
+
+        const flowGradient = ctx.createLinearGradient(
+          centerX + Math.cos(angle) * (flowOffset % length),
+          centerY + Math.sin(angle) * (flowOffset % length),
+          centerX + Math.cos(angle) * ((flowOffset + 60) % length),
+          centerY + Math.sin(angle) * ((flowOffset + 60) % length)
+        );
+
+        flowGradient.addColorStop(0, 'rgba(132, 204, 22, 0)');
+        flowGradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.8)');
+        flowGradient.addColorStop(1, 'rgba(132, 204, 22, 0)');
+
+        ctx.strokeStyle = flowGradient;
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+
         ctx.beginPath();
-        ctx.arc(toolX, toolY, 6, 0, Math.PI * 2);
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(toolX, connectionY);
+        ctx.stroke();
+
+        // Connection point dot with strong glow
+        const outerGlow = ctx.createRadialGradient(toolX, connectionY, 0, toolX, connectionY, 12);
+        outerGlow.addColorStop(0, 'rgba(132, 204, 22, 0.6)');
+        outerGlow.addColorStop(0.5, 'rgba(234, 179, 8, 0.4)');
+        outerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
+        ctx.fillStyle = outerGlow;
+        ctx.beginPath();
+        ctx.arc(toolX, connectionY, 12, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inner bright dot
+        const innerGlow = ctx.createRadialGradient(toolX, connectionY, 0, toolX, connectionY, 4);
+        innerGlow.addColorStop(0, 'rgba(234, 179, 8, 1)');
+        innerGlow.addColorStop(0.7, 'rgba(132, 204, 22, 0.8)');
+        innerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
+        ctx.fillStyle = innerGlow;
+        ctx.beginPath();
+        ctx.arc(toolX, connectionY, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core dot
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.beginPath();
+        ctx.arc(toolX, connectionY, 2, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      offset += 1;
-      if (offset > 20) offset = 0;
+      flowOffset += 2;
+      if (flowOffset > 1000) flowOffset = 0;
 
       animationFrame = requestAnimationFrame(animate);
     };
