@@ -1,49 +1,29 @@
-import React, { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
-
-// Lazy load sections below the fold for better performance
-const Portfolio = lazy(() => import('../components/sections/Portfolio'));
-const TechStack = lazy(() => import('../components/sections/TechStack'));
-const Testimonials = lazy(() => import('../components/sections/Testimonials'));
-const Pricing = lazy(() => import('../components/sections/Pricing'));
-const ProjectInquiry = lazy(() => import('../components/sections/ProjectInquiry'));
+import Portfolio from '../components/sections/Portfolio';
+import TechStack from '../components/sections/TechStack';
+import Testimonials from '../components/sections/Testimonials';
+import Pricing from '../components/sections/Pricing';
+import ProjectInquiry from '../components/sections/ProjectInquiry';
 
 const HomePage: React.FC = () => {
   const location = useLocation();
 
-  // CRITICAL: Use useLayoutEffect to run BEFORE browser paints
+  // Handle hash navigation - scroll to section BEFORE paint
   useLayoutEffect(() => {
     if (location.hash) {
-      // Prevent ANY automatic scrolling
       window.history.scrollRestoration = 'manual';
 
-      const scrollToSection = () => {
-        const element = document.querySelector(location.hash);
-        if (element) {
-          const offset = 80;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const element = document.querySelector(location.hash);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-          // Immediate scroll with NO animation
-          window.scrollTo(0, offsetPosition);
-          return true;
-        }
-        return false;
-      };
-
-      // Try to scroll immediately (synchronously)
-      if (!scrollToSection()) {
-        // If section not found yet (lazy loaded), keep trying
-        let attempts = 0;
-        const maxAttempts = 20; // 1 second total
-        const interval = setInterval(() => {
-          if (scrollToSection() || attempts >= maxAttempts) {
-            clearInterval(interval);
-          }
-          attempts++;
-        }, 50);
+        // Immediate scroll
+        window.scrollTo(0, offsetPosition);
       }
     } else {
       window.history.scrollRestoration = 'auto';
@@ -104,13 +84,11 @@ const HomePage: React.FC = () => {
 
       <div className="relative z-10 w-full">
         <About />
-        <Suspense fallback={<div className="min-h-screen" />}>
-          <Portfolio />
-          <Testimonials />
-          <Pricing />
-          <TechStack />
-          <ProjectInquiry />
-        </Suspense>
+        <Portfolio />
+        <Testimonials />
+        <Pricing />
+        <TechStack />
+        <ProjectInquiry />
       </div>
     </main>
   );
