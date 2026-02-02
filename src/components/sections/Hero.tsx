@@ -22,10 +22,10 @@ const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Lado Izquierdo: Texto y Botón */}
           <div className="lg:col-span-7 space-y-6 md:space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <span className="text-[10px] sm:text-xs tracking-widest uppercase font-bold text-white flex items-center gap-2">
+            <div className="award-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border backdrop-blur-md relative overflow-visible group cursor-pointer">
+              <span className="text-[10px] sm:text-xs tracking-widest uppercase font-bold flex items-center gap-2 relative z-10">
                 DISEÑO PREMIADO
-                <svg className="w-3.5 h-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24">
+                <svg className="award-star w-3.5 h-3.5" viewBox="0 0 24 24">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
               </span>
@@ -185,6 +185,103 @@ const Hero: React.FC = () => {
           100% { background-position: 200% center; }
         }
 
+        @keyframes gold-glow {
+          0%, 100% {
+            box-shadow:
+              0 0 20px rgba(251, 191, 36, 0.5),
+              0 0 40px rgba(251, 191, 36, 0.3),
+              inset 0 0 20px rgba(251, 191, 36, 0.1);
+          }
+          50% {
+            box-shadow:
+              0 0 30px rgba(251, 191, 36, 0.8),
+              0 0 60px rgba(251, 191, 36, 0.5),
+              inset 0 0 30px rgba(251, 191, 36, 0.2);
+          }
+        }
+
+        @keyframes star-pulse {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+            filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.8));
+          }
+          50% {
+            transform: scale(1.2) rotate(5deg);
+            filter: drop-shadow(0 0 4px rgba(251, 191, 36, 1));
+          }
+        }
+
+        @keyframes float-particle {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px);
+            opacity: 0;
+          }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% {
+            transform: translateY(-30px) translateX(10px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes shine-sweep {
+          0% { left: -100%; }
+          100% { left: 200%; }
+        }
+
+        .award-badge {
+          background: linear-gradient(135deg,
+            rgba(251, 191, 36, 0.15) 0%,
+            rgba(245, 158, 11, 0.15) 50%,
+            rgba(251, 191, 36, 0.15) 100%
+          );
+          border: 1px solid rgba(251, 191, 36, 0.4);
+          animation: gold-glow 3s ease-in-out infinite;
+          transition: all 0.3s ease;
+        }
+
+        .award-badge:hover {
+          transform: translateY(-2px);
+          border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        .award-badge span {
+          background: linear-gradient(135deg, #fbbf24, #f59e0b, #fbbf24);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .award-star {
+          fill: url(#gold-gradient);
+          animation: star-pulse 2s ease-in-out infinite;
+        }
+
+        .award-badge::before,
+        .award-badge::after {
+          content: '';
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: radial-gradient(circle, #fbbf24, transparent);
+          border-radius: 50%;
+          animation: float-particle 3s ease-in-out infinite;
+        }
+
+        .award-badge::before {
+          top: 20%;
+          left: 10%;
+          animation-delay: 0s;
+        }
+
+        .award-badge::after {
+          top: 60%;
+          right: 15%;
+          animation-delay: 1.5s;
+        }
+
         .hero-gradient-btn {
           position: relative;
           border: 2px solid transparent;
@@ -232,6 +329,16 @@ const Hero: React.FC = () => {
             0 0 90px rgba(59, 130, 246, 0.4);
         }
       `}</style>
+
+      <svg width="0" height="0">
+        <defs>
+          <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{ stopColor: '#fbbf24', stopOpacity: 1 }} />
+            <stop offset="50%" style={{ stopColor: '#f59e0b', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#fbbf24', stopOpacity: 1 }} />
+          </linearGradient>
+        </defs>
+      </svg>
     </section>
   );
 };
