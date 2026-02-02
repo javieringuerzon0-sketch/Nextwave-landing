@@ -18,25 +18,32 @@ const App: React.FC = () => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate');
+            // Remove will-change after animation completes to save memory
+            setTimeout(() => {
+              (entry.target as HTMLElement).style.willChange = 'auto';
+            }, 1000);
           }
         });
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px', // Activa un poco antes de llegar
+        rootMargin: '0px 0px -100px 0px', // Load earlier for smoother mobile
       }
     );
 
     const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => observer.observe(el));
-
-    // Optimización performance
-    const sections = document.querySelectorAll('section');
-    sections.forEach(s => {
-      s.style.willChange = 'transform, opacity';
+    elements.forEach(el => {
+      (el as HTMLElement).style.willChange = 'transform, opacity';
+      observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      // Clean up will-change
+      elements.forEach(el => {
+        (el as HTMLElement).style.willChange = 'auto';
+      });
+    };
   }, []);
 
   return (

@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Sidebar Overlay */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-all duration-500 ${
+        className={`md:hidden fixed inset-0 bg-black/70 backdrop-blur-md z-[100] transition-all duration-500 ${
           mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
         onClick={() => setMobileMenuOpen(false)}
@@ -117,19 +117,27 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Sidebar Menu */}
       <aside
-        className={`md:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm bg-black/40 backdrop-blur-3xl border-l border-white/10 z-50 transition-transform duration-500 ease-out shadow-2xl ${
+        className={`md:hidden fixed top-0 right-0 h-full w-[85%] max-w-sm z-[101] transition-transform duration-500 ease-out ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{
+          background: 'linear-gradient(to left, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.95))',
+          backdropFilter: 'blur(40px)',
+          WebkitBackdropFilter: 'blur(40px)',
+          boxShadow: '-10px 0 30px rgba(0, 0, 0, 0.5)',
+        }}
       >
+        {/* Solid dark background layer */}
+        <div className="absolute inset-0 bg-black/95 border-l border-white/10" />
         {/* Gradient Glow Effects */}
-        <div className="absolute top-20 right-10 w-40 h-40 bg-purple-500/20 rounded-full blur-[100px] pointer-events-none animate-pulse" />
+        <div className="absolute top-20 right-10 w-40 h-40 bg-purple-500/15 rounded-full blur-[100px] pointer-events-none animate-pulse z-0" />
         <div
-          className="absolute bottom-20 left-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-[100px] pointer-events-none animate-pulse"
+          className="absolute bottom-20 left-10 w-40 h-40 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none animate-pulse z-0"
           style={{ animationDelay: '1s' }}
         />
 
         {/* Close Button */}
-        <div className="absolute top-6 right-6">
+        <div className="absolute top-6 right-6 z-10">
           <button
             onClick={() => setMobileMenuOpen(false)}
             className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:rotate-90"
@@ -148,7 +156,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Logo */}
-        <div className="pt-8 px-8 mb-12">
+        <div className="relative pt-8 px-8 mb-12 z-10">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-white to-white/80 rounded-lg flex items-center justify-center shadow-lg">
               <svg
@@ -171,7 +179,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="px-8 space-y-2">
+        <nav className="relative px-8 space-y-2 z-10">
           {[
             { href: '#about', label: 'Tecnología', icon: '⚡' },
             { href: '#portfolio', label: 'Servicios', icon: '✦' },
@@ -183,7 +191,7 @@ const Navbar: React.FC = () => {
               key={item.href}
               href={item.href}
               onClick={handleLinkClick}
-              className="mobile-menu-link group relative flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300 overflow-hidden"
+              className="mobile-menu-link group relative flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.12] hover:border-white/30 transition-all duration-300 overflow-hidden"
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {/* Hover gradient effect */}
@@ -195,7 +203,7 @@ const Navbar: React.FC = () => {
               </span>
 
               {/* Text */}
-              <span className="relative text-sm font-bold uppercase tracking-[0.15em] text-white/60 group-hover:text-white transition-colors duration-300">
+              <span className="relative text-sm font-bold uppercase tracking-[0.15em] text-white/80 group-hover:text-white transition-colors duration-300">
                 {item.label}
               </span>
 
@@ -217,7 +225,7 @@ const Navbar: React.FC = () => {
         </nav>
 
         {/* Bottom CTA */}
-        <div className="absolute bottom-8 left-8 right-8">
+        <div className="absolute bottom-8 left-8 right-8 z-10">
           <a
             href="#project-inquiry"
             onClick={handleLinkClick}
