@@ -519,13 +519,29 @@ const ProjectInquiry: React.FC = () => {
           animation: pulse-glow 3s ease-in-out infinite;
         }
 
-        @keyframes rotate-gradient {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
         }
 
         .inquiry-gradient-btn {
           position: relative;
+          border: 2px solid transparent;
+          background:
+            linear-gradient(#000, #000) padding-box,
+            linear-gradient(90deg,
+              #a855f7,
+              #ec4899,
+              #f59e0b,
+              #10b981,
+              #3b82f6,
+              #8b5cf6,
+              #a855f7
+            ) border-box;
+          box-shadow:
+            0 0 20px rgba(168, 85, 247, 0.4),
+            0 0 40px rgba(236, 72, 153, 0.3),
+            0 0 60px rgba(59, 130, 246, 0.2);
         }
 
         .inquiry-gradient-btn::before {
@@ -534,28 +550,31 @@ const ProjectInquiry: React.FC = () => {
           inset: -2px;
           border-radius: 9999px;
           padding: 2px;
-          background: conic-gradient(
-            from 0deg,
-            #fbbf24,
-            #34d399,
-            #60a5fa,
-            #a78bfa,
-            #f472b6,
-            #fb923c,
-            #fbbf24
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
           );
+          background-size: 200% 100%;
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
-          animation: rotate-gradient 4s linear infinite;
-          filter: blur(4px);
-          opacity: 0.8;
+          animation: shimmer 3s ease-in-out infinite;
+          opacity: 0.6;
           z-index: 0;
         }
 
-        .inquiry-gradient-btn:hover::before {
-          filter: blur(6px);
-          opacity: 1;
+        .inquiry-gradient-btn:hover {
+          box-shadow:
+            0 0 30px rgba(168, 85, 247, 0.6),
+            0 0 60px rgba(236, 72, 153, 0.5),
+            0 0 90px rgba(59, 130, 246, 0.4);
+        }
+
+        .inquiry-gradient-btn:disabled {
+          opacity: 0.5;
+          box-shadow: none;
         }
 
         .inquiry-gradient-btn:disabled::before {
