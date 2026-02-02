@@ -20,9 +20,11 @@ const TechStack: React.FC = () => {
     window.addEventListener('resize', updateSize);
 
     let animationFrame: number;
-    let flowOffset = 0;
+    const time = 0;
+    const cycleDuration = 6000; // Total cycle duration in ms
+    const lineDrawDuration = 800; // Duration for each line to draw in ms
 
-    const animate = () => {
+    const animate = (timestamp: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const centerX = canvas.width / 2;
@@ -30,100 +32,114 @@ const TechStack: React.FC = () => {
 
       const canvasRect = canvas.getBoundingClientRect();
 
+      // Calculate cycle progress (0 to 1, repeating)
+      const cycleProgress = (timestamp % cycleDuration) / cycleDuration;
+      const totalTools = toolRefsRef.current.length;
+
       // Get actual positions from DOM elements
       toolRefsRef.current.forEach((toolRef, i) => {
         if (!toolRef) return;
 
         const toolRect = toolRef.getBoundingClientRect();
-        // Calculate center X of the tool relative to canvas
         const toolCenterX = toolRect.left + toolRect.width / 2 - canvasRect.left;
-        // Fixed Y position below tool names
         const connectionY = 105;
 
-        // Main line with gradient
-        const gradient = ctx.createLinearGradient(centerX, centerY, toolCenterX, connectionY);
-        gradient.addColorStop(0, 'rgba(132, 204, 22, 0.3)');
-        gradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.4)');
-        gradient.addColorStop(1, 'rgba(132, 204, 22, 0.3)');
+        // Calculate when this line should start and end drawing
+        const lineStartTime = i / totalTools;
+        const lineEndTime = lineStartTime + lineDrawDuration / cycleDuration;
 
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 2;
-        ctx.setLineDash([]);
+        // Calculate line draw progress (0 to 1)
+        let lineProgress = 0;
+        if (cycleProgress >= lineStartTime && cycleProgress <= lineEndTime) {
+          lineProgress = (cycleProgress - lineStartTime) / (lineDrawDuration / cycleDuration);
+          // Ease out cubic for smoother animation
+          lineProgress = 1 - Math.pow(1 - lineProgress, 3);
+        } else if (cycleProgress > lineEndTime) {
+          lineProgress = 1;
+        }
 
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(toolCenterX, connectionY);
-        ctx.stroke();
+        if (lineProgress > 0) {
+          // Calculate current end point of the line based on progress
+          const currentX = centerX + (toolCenterX - centerX) * lineProgress;
+          const currentY = centerY + (connectionY - centerY) * lineProgress;
 
-        // Animated flowing gradient overlay
-        const length = Math.sqrt(
-          Math.pow(toolCenterX - centerX, 2) + Math.pow(connectionY - centerY, 2)
-        );
-        const angle = Math.atan2(connectionY - centerY, toolCenterX - centerX);
+          // Base line
+          const gradient = ctx.createLinearGradient(centerX, centerY, currentX, currentY);
+          gradient.addColorStop(0, 'rgba(132, 204, 22, 0.4)');
+          gradient.addColorStop(1, 'rgba(234, 179, 8, 0.6)');
 
-        const flowGradient = ctx.createLinearGradient(
-          centerX + Math.cos(angle) * (flowOffset % length),
-          centerY + Math.sin(angle) * (flowOffset % length),
-          centerX + Math.cos(angle) * ((flowOffset + 60) % length),
-          centerY + Math.sin(angle) * ((flowOffset + 60) % length)
-        );
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 2;
+          ctx.setLineDash([]);
+          ctx.lineCap = 'round';
 
-        flowGradient.addColorStop(0, 'rgba(132, 204, 22, 0)');
-        flowGradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.8)');
-        flowGradient.addColorStop(1, 'rgba(132, 204, 22, 0)');
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+          ctx.lineTo(currentX, currentY);
+          ctx.stroke();
 
-        ctx.strokeStyle = flowGradient;
-        ctx.lineWidth = 3;
-        ctx.lineCap = 'round';
+          // Glowing overlay on the line
+          const glowGradient = ctx.createLinearGradient(centerX, centerY, currentX, currentY);
+          glowGradient.addColorStop(0, 'rgba(132, 204, 22, 0.2)');
+          glowGradient.addColorStop(0.5, 'rgba(234, 179, 8, 0.8)');
+          glowGradient.addColorStop(1, 'rgba(234, 179, 8, 0.3)');
 
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(toolCenterX, connectionY);
-        ctx.stroke();
+          ctx.strokeStyle = glowGradient;
+          ctx.lineWidth = 4;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = 'rgba(234, 179, 8, 0.5)';
 
-        // Connection point dot with strong glow
-        const outerGlow = ctx.createRadialGradient(
-          toolCenterX,
-          connectionY,
-          0,
-          toolCenterX,
-          connectionY,
-          12
-        );
-        outerGlow.addColorStop(0, 'rgba(132, 204, 22, 0.6)');
-        outerGlow.addColorStop(0.5, 'rgba(234, 179, 8, 0.4)');
-        outerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
-        ctx.fillStyle = outerGlow;
-        ctx.beginPath();
-        ctx.arc(toolCenterX, connectionY, 12, 0, Math.PI * 2);
-        ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+          ctx.lineTo(currentX, currentY);
+          ctx.stroke();
 
-        // Inner bright dot
-        const innerGlow = ctx.createRadialGradient(
-          toolCenterX,
-          connectionY,
-          0,
-          toolCenterX,
-          connectionY,
-          4
-        );
-        innerGlow.addColorStop(0, 'rgba(234, 179, 8, 1)');
-        innerGlow.addColorStop(0.7, 'rgba(132, 204, 22, 0.8)');
-        innerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
-        ctx.fillStyle = innerGlow;
-        ctx.beginPath();
-        ctx.arc(toolCenterX, connectionY, 4, 0, Math.PI * 2);
-        ctx.fill();
+          ctx.shadowBlur = 0;
 
-        // Core dot
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.beginPath();
-        ctx.arc(toolCenterX, connectionY, 2, 0, Math.PI * 2);
-        ctx.fill();
+          // Show connection point only when line is fully drawn
+          if (lineProgress >= 1) {
+            // Connection point dot with strong glow
+            const outerGlow = ctx.createRadialGradient(
+              toolCenterX,
+              connectionY,
+              0,
+              toolCenterX,
+              connectionY,
+              12
+            );
+            outerGlow.addColorStop(0, 'rgba(132, 204, 22, 0.6)');
+            outerGlow.addColorStop(0.5, 'rgba(234, 179, 8, 0.4)');
+            outerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
+            ctx.fillStyle = outerGlow;
+            ctx.beginPath();
+            ctx.arc(toolCenterX, connectionY, 12, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Inner bright dot
+            const innerGlow = ctx.createRadialGradient(
+              toolCenterX,
+              connectionY,
+              0,
+              toolCenterX,
+              connectionY,
+              4
+            );
+            innerGlow.addColorStop(0, 'rgba(234, 179, 8, 1)');
+            innerGlow.addColorStop(0.7, 'rgba(132, 204, 22, 0.8)');
+            innerGlow.addColorStop(1, 'rgba(132, 204, 22, 0)');
+            ctx.fillStyle = innerGlow;
+            ctx.beginPath();
+            ctx.arc(toolCenterX, connectionY, 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Core dot
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.beginPath();
+            ctx.arc(toolCenterX, connectionY, 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
       });
-
-      flowOffset += 2;
-      if (flowOffset > 1000) flowOffset = 0;
 
       animationFrame = requestAnimationFrame(animate);
     };
