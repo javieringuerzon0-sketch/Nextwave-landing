@@ -13,38 +13,48 @@ const ProjectInquiry = lazy(() => import('../components/sections/ProjectInquiry'
 const HomePage: React.FC = () => {
   const location = useLocation();
 
-  // Handle hash navigation from other pages
+  // Prevent initial scroll to top if there's a hash
   useEffect(() => {
     if (location.hash) {
+      // Prevent default scroll behavior
+      window.history.scrollRestoration = 'manual';
+
       const scrollToSection = () => {
         const element = document.querySelector(location.hash);
         if (element) {
-          // Scroll to element with offset for navbar
+          // Instant scroll without smooth behavior to avoid flash
           const offset = 80;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
 
           window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth',
+            behavior: 'auto', // Instant scroll, no smooth
           });
           return true;
         }
         return false;
       };
 
-      // Try immediately
-      if (!scrollToSection()) {
-        // If not found, retry with increasing delays for lazy-loaded sections
-        const delays = [100, 300, 600, 1000];
-        delays.forEach(delay => {
-          setTimeout(scrollToSection, delay);
-        });
-      }
+      // Try immediately with short delays for lazy-loaded sections
+      const tryScroll = () => {
+        if (!scrollToSection()) {
+          // Retry only if element not found yet
+          setTimeout(tryScroll, 50);
+        }
+      };
+
+      // Start trying after a tiny delay to let DOM settle
+      setTimeout(tryScroll, 10);
     } else {
-      // No hash, scroll to top
+      // No hash, normal scroll behavior
+      window.history.scrollRestoration = 'auto';
       window.scrollTo(0, 0);
     }
+
+    return () => {
+      window.history.scrollRestoration = 'auto';
+    };
   }, [location]);
 
   useEffect(() => {
