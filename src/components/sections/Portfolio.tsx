@@ -8,7 +8,7 @@ const Portfolio: React.FC = () => {
       category: 'E-commerce Platform',
       description: 'Tienda online de lujo con carrito inteligente y checkout optimizado',
       color: 'from-violet-500/40 via-purple-500/40 to-fuchsia-500/40',
-      size: 'col-span-2 row-span-2',
+      size: 'col-span-1 md:col-span-2 row-span-1 md:row-span-2',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dc799a20-da2f-49ee-98ee-cf54fdb35126_3840w.jpg',
       features: ['Carrito de compras', 'Pasarela de pago', 'Gestión de inventario'],
@@ -39,7 +39,7 @@ const Portfolio: React.FC = () => {
       category: 'Publicidad Digital',
       description: 'Creamos anuncios publicitarios para tus redes sociales y web',
       color: 'from-orange-500/40 via-red-500/40 to-pink-500/40',
-      size: 'col-span-1 row-span-2',
+      size: 'col-span-1 row-span-1 md:row-span-2',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2fc6b2a5-39fc-4917-b025-be93fdf03f5a_3840w.webp',
     },
@@ -49,7 +49,7 @@ const Portfolio: React.FC = () => {
       category: 'Panel de Control',
       description: 'Creamos tu panel de control personalizado para gestionar tu negocio',
       color: 'from-cyan-500/40 via-blue-500/40 to-indigo-500/40',
-      size: 'col-span-2 row-span-1',
+      size: 'col-span-1 md:col-span-2 row-span-1',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/769698c4-33dc-42f0-a44e-8873b54ee68d_3840w.webp',
     },
@@ -59,7 +59,7 @@ const Portfolio: React.FC = () => {
       category: 'Desarrollo de Apps',
       description: 'Creamos aplicaciones móviles personalizadas para tu negocio',
       color: 'from-indigo-500/40 via-violet-500/40 to-purple-500/40',
-      size: 'col-span-2 row-span-1',
+      size: 'col-span-1 md:col-span-2 row-span-1',
       image:
         'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0bf9f8f8-206e-43d2-ab1c-9c978e5dcb8c_3840w.webp',
     },
