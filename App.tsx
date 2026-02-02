@@ -5,6 +5,7 @@ import Hero from './src/components/sections/Hero';
 import BentoFeatures from './src/components/sections/BentoFeatures';
 import Portfolio from './src/components/sections/Portfolio';
 import About from './src/components/sections/About';
+import TechStack from './src/components/sections/TechStack';
 import Testimonials from './src/components/sections/Testimonials';
 import Pricing from './src/components/sections/Pricing';
 import Contact from './src/components/sections/Contact';
@@ -57,9 +58,10 @@ const App: React.FC = () => {
         <div className="relative z-10 w-full">
           <BentoFeatures />
           <Portfolio />
+          <About />
           <Testimonials />
           <Pricing />
-          <About />
+          <TechStack />
           <Contact />
         </div>
       </main>
