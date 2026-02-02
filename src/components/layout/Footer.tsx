@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
 
           <div className="md:col-span-2 space-y-6">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">
-              Soluciones
+              Servicios
             </h4>
             <ul className="space-y-4">
               <li>
