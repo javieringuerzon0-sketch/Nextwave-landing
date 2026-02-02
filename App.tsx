@@ -2,10 +2,10 @@ import React, { useEffect, lazy, Suspense } from 'react';
 import Navbar from './src/components/layout/Navbar';
 import Footer from './src/components/layout/Footer';
 import Hero from './src/components/sections/Hero';
+import About from './src/components/sections/About';
 
 // Lazy load sections below the fold for better performance
 const Portfolio = lazy(() => import('./src/components/sections/Portfolio'));
-const About = lazy(() => import('./src/components/sections/About'));
 const TechStack = lazy(() => import('./src/components/sections/TechStack'));
 const Testimonials = lazy(() => import('./src/components/sections/Testimonials'));
 const Pricing = lazy(() => import('./src/components/sections/Pricing'));
@@ -57,8 +57,8 @@ const App: React.FC = () => {
         ></div>
 
         <div className="relative z-10 w-full">
+          <About />
           <Suspense fallback={<div className="min-h-screen" />}>
-            <About />
             <Portfolio />
             <Testimonials />
             <Pricing />
