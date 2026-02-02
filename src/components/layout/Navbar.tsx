@@ -49,31 +49,31 @@ const Navbar: React.FC = () => {
 
         <div className="hidden md:flex items-center gap-8">
           <a
-            href="#about"
+            href="/#about"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
             Tecnología
           </a>
           <a
-            href="#portfolio"
+            href="/#portfolio"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
             Servicios
           </a>
           <a
-            href="#testimonials"
+            href="/#testimonials"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
             Casos
           </a>
           <a
-            href="#pricing"
+            href="/#pricing"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
             Precios
           </a>
           <a
-            href="#techstack"
+            href="/#techstack"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
             Herramientas
@@ -178,11 +178,11 @@ const Navbar: React.FC = () => {
         {/* Navigation Links */}
         <nav className="relative px-8 space-y-3 z-20">
           {[
-            { href: '#about', label: 'Tecnología', icon: '⚡' },
-            { href: '#portfolio', label: 'Servicios', icon: '✦' },
-            { href: '#testimonials', label: 'Casos', icon: '★' },
-            { href: '#pricing', label: 'Precios', icon: '◆' },
-            { href: '#techstack', label: 'Herramientas', icon: '◉' },
+            { href: '/#about', label: 'Tecnología', icon: '⚡' },
+            { href: '/#portfolio', label: 'Servicios', icon: '✦' },
+            { href: '/#testimonials', label: 'Casos', icon: '★' },
+            { href: '/#pricing', label: 'Precios', icon: '◆' },
+            { href: '/#techstack', label: 'Herramientas', icon: '◉' },
           ].map(item => (
             <a
               key={item.href}
@@ -217,7 +217,7 @@ const Navbar: React.FC = () => {
         {/* Bottom CTA */}
         <div className="absolute bottom-8 left-8 right-8 z-20">
           <a
-            href="#project-inquiry"
+            href="/#project-inquiry"
             onClick={handleLinkClick}
             className="group relative flex items-center justify-center gap-2 w-full px-6 py-4 bg-white text-black rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-lg"
           >
