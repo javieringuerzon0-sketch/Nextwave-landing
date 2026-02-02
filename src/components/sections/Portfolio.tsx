@@ -182,11 +182,11 @@ const Portfolio: React.FC = () => {
             href="https://wa.me/526122893294"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white text-sm font-semibold backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+            className="portfolio-gradient-btn inline-flex items-center gap-2 px-8 py-4 rounded-full bg-black text-white text-sm font-semibold transition-all duration-500 hover:scale-105 group"
           >
             Contactar a un profesional
             <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -197,6 +197,48 @@ const Portfolio: React.FC = () => {
           </a>
         </div>
       </div>
+
+      <style>{`
+        @keyframes rotate-gradient {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .portfolio-gradient-btn {
+          position: relative;
+          overflow: visible;
+        }
+
+        .portfolio-gradient-btn::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 9999px;
+          padding: 2px;
+          background: conic-gradient(
+            from 0deg,
+            #fbbf24,
+            #34d399,
+            #60a5fa,
+            #a78bfa,
+            #f472b6,
+            #fb923c,
+            #fbbf24
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          animation: rotate-gradient 4s linear infinite;
+          filter: blur(4px);
+          opacity: 0.8;
+          z-index: -1;
+        }
+
+        .portfolio-gradient-btn:hover::before {
+          filter: blur(6px);
+          opacity: 1;
+        }
+      `}</style>
     </section>
   );
 };

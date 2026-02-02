@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
             <div className="pt-4">
               <a
                 href="#project-inquiry"
-                className="group relative inline-flex items-center justify-center gap-2 px-7 py-3 bg-white text-black rounded-full text-xs font-bold uppercase tracking-widest overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
+                className="hero-gradient-btn group relative inline-flex items-center justify-center gap-2 px-7 py-3 bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest overflow-visible transition-all duration-500 hover:scale-105"
               >
                 <span className="relative z-10">Iniciar Proyecto</span>
                 <svg
@@ -63,8 +63,6 @@ const Hero: React.FC = () => {
                 >
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-white via-zinc-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               </a>
             </div>
           </div>
@@ -180,6 +178,44 @@ const Hero: React.FC = () => {
         }
         .animate-marquee {
           animation: marquee 25s linear infinite;
+        }
+
+        @keyframes rotate-gradient {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .hero-gradient-btn {
+          position: relative;
+        }
+
+        .hero-gradient-btn::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 9999px;
+          padding: 2px;
+          background: conic-gradient(
+            from 0deg,
+            #fbbf24,
+            #34d399,
+            #60a5fa,
+            #a78bfa,
+            #f472b6,
+            #fb923c,
+            #fbbf24
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          animation: rotate-gradient 4s linear infinite;
+          filter: blur(4px);
+          opacity: 0.8;
+        }
+
+        .hero-gradient-btn:hover::before {
+          filter: blur(6px);
+          opacity: 1;
         }
       `}</style>
     </section>

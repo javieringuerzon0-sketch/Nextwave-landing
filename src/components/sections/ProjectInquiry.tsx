@@ -482,30 +482,26 @@ const ProjectInquiry: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="group inline-flex overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] rounded-full pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inquiry-gradient-btn group inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-black text-white text-xs font-medium uppercase tracking-widest transition-all duration-500 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed overflow-visible"
             >
-              <span className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#ffffff_100%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-              <span className="absolute inset-0 rounded-full bg-zinc-800 transition-opacity duration-300 group-hover:opacity-0"></span>
-              <span className="flex items-center justify-center gap-2 uppercase transition-colors duration-300 group-hover:text-white text-xs font-medium text-zinc-400 tracking-widest bg-gradient-to-b from-zinc-800 to-zinc-950 w-full h-full rounded-full pt-2.5 pr-6 pb-2.5 pl-6 relative shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]">
-                <span className="z-10 relative">
-                  {isSubmitting ? 'Enviando...' : 'Enviar Consulta'}
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
+              <span className="z-10 relative">
+                {isSubmitting ? 'Enviando...' : 'Enviar Consulta'}
               </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
             </button>
           </div>
         </form>
@@ -521,6 +517,50 @@ const ProjectInquiry: React.FC = () => {
         }
         .animate-pulse-glow {
           animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate-gradient {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .inquiry-gradient-btn {
+          position: relative;
+        }
+
+        .inquiry-gradient-btn::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 9999px;
+          padding: 2px;
+          background: conic-gradient(
+            from 0deg,
+            #fbbf24,
+            #34d399,
+            #60a5fa,
+            #a78bfa,
+            #f472b6,
+            #fb923c,
+            #fbbf24
+          );
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          animation: rotate-gradient 4s linear infinite;
+          filter: blur(4px);
+          opacity: 0.8;
+          z-index: 0;
+        }
+
+        .inquiry-gradient-btn:hover::before {
+          filter: blur(6px);
+          opacity: 1;
+        }
+
+        .inquiry-gradient-btn:disabled::before {
+          animation: none;
+          opacity: 0.3;
         }
       `}</style>
     </section>
