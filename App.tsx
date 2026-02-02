@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './src/components/layout/Navbar';
 import Footer from './src/components/layout/Footer';
 import HomePage from './src/pages/HomePage';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         </Routes>
 
         <Footer />
+        <SpeedInsights />
       </div>
     </Router>
   );
