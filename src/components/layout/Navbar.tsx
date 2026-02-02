@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
             href="/#portfolio"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
-            Servicios
+            Portafolio
           </a>
           <a
             href="/#testimonials"
@@ -179,7 +179,7 @@ const Navbar: React.FC = () => {
         <nav className="relative px-8 space-y-3 z-20">
           {[
             { href: '/#about', label: 'Tecnología', icon: '⚡' },
-            { href: '/#portfolio', label: 'Servicios', icon: '✦' },
+            { href: '/#portfolio', label: 'Portafolio', icon: '✦' },
             { href: '/#testimonials', label: 'Casos', icon: '★' },
             { href: '/#pricing', label: 'Precios', icon: '◆' },
             { href: '/#techstack', label: 'Herramientas', icon: '◉' },
