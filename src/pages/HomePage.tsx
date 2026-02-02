@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
@@ -13,49 +13,46 @@ const ProjectInquiry = lazy(() => import('../components/sections/ProjectInquiry'
 const HomePage: React.FC = () => {
   const location = useLocation();
 
-  // Prevent initial scroll to top if there's a hash
-  useEffect(() => {
+  // CRITICAL: Use useLayoutEffect to run BEFORE browser paints
+  useLayoutEffect(() => {
     if (location.hash) {
-      // Prevent default scroll behavior
+      // Prevent ANY automatic scrolling
       window.history.scrollRestoration = 'manual';
 
       const scrollToSection = () => {
         const element = document.querySelector(location.hash);
         if (element) {
-          // Instant scroll without smooth behavior to avoid flash
           const offset = 80;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'auto', // Instant scroll, no smooth
-          });
+          // Immediate scroll with NO animation
+          window.scrollTo(0, offsetPosition);
           return true;
         }
         return false;
       };
 
-      // Try immediately with short delays for lazy-loaded sections
-      const tryScroll = () => {
-        if (!scrollToSection()) {
-          // Retry only if element not found yet
-          setTimeout(tryScroll, 50);
-        }
-      };
-
-      // Start trying after a tiny delay to let DOM settle
-      setTimeout(tryScroll, 10);
+      // Try to scroll immediately (synchronously)
+      if (!scrollToSection()) {
+        // If section not found yet (lazy loaded), keep trying
+        let attempts = 0;
+        const maxAttempts = 20; // 1 second total
+        const interval = setInterval(() => {
+          if (scrollToSection() || attempts >= maxAttempts) {
+            clearInterval(interval);
+          }
+          attempts++;
+        }, 50);
+      }
     } else {
-      // No hash, normal scroll behavior
       window.history.scrollRestoration = 'auto';
-      window.scrollTo(0, 0);
     }
 
     return () => {
       window.history.scrollRestoration = 'auto';
     };
-  }, [location]);
+  }, [location.hash, location.pathname]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
