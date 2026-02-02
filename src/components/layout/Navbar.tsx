@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
             href="#features"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
-            Plataforma
+            Propósito
           </a>
           <a
             href="#about"
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
             href="#portfolio"
             className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
           >
-            Portafolio
+            Servicios
           </a>
           <a
             href="#testimonials"
