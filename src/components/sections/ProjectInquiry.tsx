@@ -26,8 +26,15 @@ const ProjectInquiry: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      console.log('Submitting to Supabase...', {
+        name,
+        email,
+        services: selectedServices,
+        goals: selectedGoals,
+      });
+
       // Guardar en Supabase
-      const { error } = await supabase.from('project_inquiries').insert([
+      const { data, error } = await supabase.from('project_inquiries').insert([
         {
           name,
           email,
@@ -42,10 +49,19 @@ const ProjectInquiry: React.FC = () => {
       ]);
 
       if (error) {
-        console.error('Error saving to Supabase:', error);
-        alert('Hubo un error al enviar tu consulta. Por favor intenta nuevamente.');
+        console.error('Supabase error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code,
+        });
+        alert(
+          `Hubo un error al enviar tu consulta: ${error.message}\n\nPor favor intenta nuevamente o contáctanos directamente.`
+        );
         return;
       }
+
+      console.log('Successfully saved to Supabase:', data);
 
       // Si se guardó exitosamente, redirigir a Calendly
       window.open('https://calendly.com/app/scheduling/meeting_types/user/me', '_blank');
@@ -103,8 +119,11 @@ const ProjectInquiry: React.FC = () => {
             </div>
 
             {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 rounded-full ring-1 px-3 py-1.5 shadow-lg bg-slate-900/90 ring-slate-700/70">
-              <span className="w-2 h-2 rounded-full animate-pulse box-content border-2 bg-emerald-400 border-slate-900"></span>
+            <div className="relative inline-flex items-center gap-2 rounded-full ring-1 px-3 py-1.5 shadow-lg bg-slate-900/90 ring-slate-700/70 animate-pulse-glow">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+              </span>
               <span className="text-xs font-medium tracking-widest uppercase text-sky-100/90">
                 Aceptando Clientes
               </span>
@@ -474,6 +493,19 @@ const ProjectInquiry: React.FC = () => {
           </div>
         </form>
       </div>
+      <style>{`
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 25px rgba(52, 211, 153, 0.5);
+          }
+        }
+        .animate-pulse-glow {
+          animation: pulse-glow 3s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };
