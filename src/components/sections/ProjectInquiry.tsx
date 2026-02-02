@@ -519,9 +519,9 @@ const ProjectInquiry: React.FC = () => {
           animation: pulse-glow 3s ease-in-out infinite;
         }
 
-        @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
+        @keyframes border-spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
 
         .inquiry-gradient-btn {
@@ -547,22 +547,25 @@ const ProjectInquiry: React.FC = () => {
         .inquiry-gradient-btn::before {
           content: '';
           position: absolute;
-          inset: -2px;
+          inset: -3px;
           border-radius: 9999px;
-          padding: 2px;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.4),
-            transparent
+          padding: 3px;
+          background: conic-gradient(
+            from 0deg,
+            transparent 0deg 340deg,
+            rgba(255, 255, 255, 0.8) 350deg 360deg
           );
-          background-size: 200% 100%;
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
-          animation: shimmer 3s ease-in-out infinite;
-          opacity: 0.6;
+          animation: border-spin 3s linear infinite;
+          animation-play-state: paused;
+          filter: blur(2px);
           z-index: 0;
+        }
+
+        .inquiry-gradient-btn:hover::before {
+          animation-play-state: running;
         }
 
         .inquiry-gradient-btn:hover {
@@ -578,7 +581,7 @@ const ProjectInquiry: React.FC = () => {
         }
 
         .inquiry-gradient-btn:disabled::before {
-          animation: none;
+          animation-play-state: paused;
           opacity: 0.3;
         }
       `}</style>
