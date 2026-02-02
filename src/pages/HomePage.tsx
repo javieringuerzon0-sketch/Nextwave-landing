@@ -1,4 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
+import { useLocation } from 'react-router-dom';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 
@@ -10,6 +11,21 @@ const Pricing = lazy(() => import('../components/sections/Pricing'));
 const ProjectInquiry = lazy(() => import('../components/sections/ProjectInquiry'));
 
 const HomePage: React.FC = () => {
+  const location = useLocation();
+
+  // Handle hash navigation from other pages
+  useEffect(() => {
+    if (location.hash) {
+      // Wait for lazy loaded components to render
+      setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
