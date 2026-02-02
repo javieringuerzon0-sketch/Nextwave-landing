@@ -7,7 +7,6 @@ import Portfolio from './src/components/sections/Portfolio';
 import About from './src/components/sections/About';
 import Testimonials from './src/components/sections/Testimonials';
 import Pricing from './src/components/sections/Pricing';
-import FeatureStats from './src/components/sections/FeatureStats';
 import Contact from './src/components/sections/Contact';
 
 const App: React.FC = () => {
@@ -61,7 +60,6 @@ const App: React.FC = () => {
           <About />
           <Testimonials />
           <Pricing />
-          <FeatureStats />
           <Contact />
         </div>
       </main>
