@@ -9,17 +9,40 @@ const ProjectInquiry: React.FC = () => {
   const [details, setDetails] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
-  const toggleService = (service: string) => {
+  const toggleService = React.useCallback((service: string) => {
     setSelectedServices(prev =>
       prev.includes(service) ? prev.filter(s => s !== service) : [...prev, service]
     );
-  };
+  }, []);
 
-  const toggleGoal = (goal: string) => {
+  const toggleGoal = React.useCallback((goal: string) => {
     setSelectedGoals(prev =>
       prev.includes(goal) ? prev.filter(g => g !== goal) : [...prev, goal]
     );
-  };
+  }, []);
+
+  const handleNameChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  }, []);
+
+  const handleEmailChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  }, []);
+
+  const handleDetailsChange = React.useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDetails(e.target.value);
+  }, []);
+
+  const goalsOptions = React.useMemo(
+    () => [
+      'Aumentar Ingresos',
+      'Mejorar Conversión',
+      'Rediseño de Marca',
+      'Lanzar Producto',
+      'Nuevo Mercado',
+    ],
+    []
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -152,7 +175,7 @@ const ProjectInquiry: React.FC = () => {
                 type="text"
                 placeholder="Nombre"
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={handleNameChange}
                 required
                 className="w-full bg-transparent text-sm placeholder-slate-500 py-4 pl-14 pr-4 rounded-2xl focus:outline-none focus:bg-slate-900/60 transition-all text-slate-200"
               />
@@ -178,7 +201,7 @@ const ProjectInquiry: React.FC = () => {
                 type="email"
                 placeholder="Correo electrónico"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 required
                 className="w-full bg-transparent text-sm placeholder-slate-500 py-4 pl-14 pr-4 rounded-2xl focus:outline-none focus:bg-slate-900/60 transition-all text-slate-200"
               />
@@ -391,13 +414,7 @@ const ProjectInquiry: React.FC = () => {
               Objetivos Principales
             </h3>
             <div className="flex flex-wrap gap-3">
-              {[
-                'Aumentar Ingresos',
-                'Mejorar Conversión',
-                'Rediseño de Marca',
-                'Lanzar Producto',
-                'Nuevo Mercado',
-              ].map(goal => (
+              {goalsOptions.map(goal => (
                 <button
                   key={goal}
                   type="button"
@@ -431,7 +448,7 @@ const ProjectInquiry: React.FC = () => {
               <textarea
                 placeholder="Describe tu proyecto, cronograma y expectativas de presupuesto..."
                 value={details}
-                onChange={e => setDetails(e.target.value)}
+                onChange={handleDetailsChange}
                 className="w-full h-36 bg-transparent text-sm placeholder-slate-500 p-6 rounded-2xl focus:outline-none focus:bg-slate-900/60 resize-none transition-all text-slate-200"
               ></textarea>
             </div>
