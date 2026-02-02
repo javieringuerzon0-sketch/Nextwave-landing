@@ -8,7 +8,7 @@ import About from './src/components/sections/About';
 import TechStack from './src/components/sections/TechStack';
 import Testimonials from './src/components/sections/Testimonials';
 import Pricing from './src/components/sections/Pricing';
-import Contact from './src/components/sections/Contact';
+import ProjectInquiry from './src/components/sections/ProjectInquiry';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -62,7 +62,7 @@ const App: React.FC = () => {
           <Testimonials />
           <Pricing />
           <TechStack />
-          <Contact />
+          <ProjectInquiry />
         </div>
       </main>
 
