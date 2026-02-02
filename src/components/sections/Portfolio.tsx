@@ -114,7 +114,9 @@ const Portfolio: React.FC = () => {
               )}
 
               {/* Gradient Overlay - Lighter for more vibrant colors */}
-              <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/20 to-transparent" />
+              {project.id !== 6 && (
+                <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/20 to-transparent" />
+              )}
 
               {/* Content */}
               <div className="relative h-full p-8 flex flex-col justify-between">
@@ -177,10 +179,12 @@ const Portfolio: React.FC = () => {
         {/* CTA */}
         <div className="mt-16 text-center">
           <a
-            href="#contact"
+            href="https://wa.me/526122893294"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white text-sm font-semibold backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
           >
-            Ver Todos los Proyectos
+            Inicia tu proyecto
             <svg
               className="w-4 h-4 group-hover:translate-x-1 transition-transform"
               fill="none"
