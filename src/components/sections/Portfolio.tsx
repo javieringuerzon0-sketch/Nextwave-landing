@@ -184,7 +184,7 @@ const Portfolio: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white text-sm font-semibold backdrop-blur-md hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
           >
-            Inicia tu proyecto
+            Contactar a un profesional
             <svg
               className="w-4 h-4 group-hover:translate-x-1 transition-transform"
               fill="none"
