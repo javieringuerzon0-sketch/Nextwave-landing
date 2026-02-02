@@ -188,26 +188,26 @@ const Hero: React.FC = () => {
         @keyframes gold-glow {
           0%, 100% {
             box-shadow:
-              0 0 20px rgba(251, 191, 36, 0.5),
-              0 0 40px rgba(251, 191, 36, 0.3),
-              inset 0 0 20px rgba(251, 191, 36, 0.1);
+              0 0 10px rgba(251, 191, 36, 0.2),
+              0 0 20px rgba(251, 191, 36, 0.1),
+              inset 0 0 10px rgba(251, 191, 36, 0.05);
           }
           50% {
             box-shadow:
-              0 0 30px rgba(251, 191, 36, 0.8),
-              0 0 60px rgba(251, 191, 36, 0.5),
-              inset 0 0 30px rgba(251, 191, 36, 0.2);
+              0 0 15px rgba(251, 191, 36, 0.3),
+              0 0 30px rgba(251, 191, 36, 0.15),
+              inset 0 0 15px rgba(251, 191, 36, 0.08);
           }
         }
 
         @keyframes star-pulse {
           0%, 100% {
             transform: scale(1) rotate(0deg);
-            filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.8));
+            filter: drop-shadow(0 0 1px rgba(251, 191, 36, 0.4));
           }
           50% {
-            transform: scale(1.2) rotate(5deg);
-            filter: drop-shadow(0 0 4px rgba(251, 191, 36, 1));
+            transform: scale(1.1) rotate(3deg);
+            filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.6));
           }
         }
 
@@ -231,18 +231,18 @@ const Hero: React.FC = () => {
 
         .award-badge {
           background: linear-gradient(135deg,
-            rgba(251, 191, 36, 0.15) 0%,
-            rgba(245, 158, 11, 0.15) 50%,
-            rgba(251, 191, 36, 0.15) 100%
+            rgba(251, 191, 36, 0.08) 0%,
+            rgba(245, 158, 11, 0.08) 50%,
+            rgba(251, 191, 36, 0.08) 100%
           );
-          border: 1px solid rgba(251, 191, 36, 0.4);
+          border: 1px solid rgba(251, 191, 36, 0.25);
           animation: gold-glow 3s ease-in-out infinite;
           transition: all 0.3s ease;
         }
 
         .award-badge:hover {
           transform: translateY(-2px);
-          border-color: rgba(251, 191, 36, 0.6);
+          border-color: rgba(251, 191, 36, 0.4);
         }
 
         .award-badge span {
@@ -263,9 +263,9 @@ const Hero: React.FC = () => {
         .award-badge::after {
           content: '';
           position: absolute;
-          width: 4px;
-          height: 4px;
-          background: radial-gradient(circle, #fbbf24, transparent);
+          width: 3px;
+          height: 3px;
+          background: radial-gradient(circle, rgba(251, 191, 36, 0.4), transparent);
           border-radius: 50%;
           animation: float-particle 3s ease-in-out infinite;
         }
