@@ -45,6 +45,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     console.log('Intentando suscribir:', email, 'a lista #3');
+    console.log(
+      'API Key presente:',
+      BREVO_API_KEY ? 'Sí (primeros 10 chars: ' + BREVO_API_KEY.substring(0, 10) + '...)' : 'No'
+    );
 
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
@@ -59,7 +63,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }),
     });
 
-    const data = await response.json();
+    console.log('Status de respuesta:', response.status, response.statusText);
+
+    // Verificar si la respuesta es JSON
+    const contentType = response.headers.get('content-type');
+    console.log('Content-Type:', contentType);
+
+    let data;
+    try {
+      const text = await response.text();
+      console.log('Respuesta raw:', text);
+      data = text ? JSON.parse(text) : {};
+    } catch (parseError: any) {
+      console.error('Error parseando JSON:', parseError.message);
+      return res.status(500).json({
+        error: 'Respuesta inválida de Brevo. Verifica tu API key.',
+      });
+    }
+
     console.log('Respuesta de Brevo:', { status: response.status, data });
 
     if (!response.ok) {
