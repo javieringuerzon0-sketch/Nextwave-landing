@@ -2,12 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import * as Sentry from '@sentry/react';
+import { inject } from '@vercel/analytics';
 import App from './App';
 import './src/styles/globals.css';
 import { validateEnv } from './src/lib/validateEnv';
+import { initAllAnalytics } from './src/lib/analytics';
 
 // Validar variables de entorno ANTES de iniciar la app
 validateEnv();
+
+// Inicializar Vercel Analytics
+inject();
+
+// Inicializar otros servicios de analytics (GA4, Clarity, Web Vitals)
+initAllAnalytics();
 
 // Configurar Sentry para error tracking
 // IMPORTANTE: Reemplaza el DSN con tu propio DSN de Sentry.io

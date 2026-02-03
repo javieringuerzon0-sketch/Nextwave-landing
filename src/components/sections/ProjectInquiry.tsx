@@ -1,6 +1,7 @@
 import React from 'react';
 import { supabase } from '../../lib/supabase';
 import { sanitizeInput, isValidEmail } from '../../lib/sanitize';
+import { trackFormSubmit } from '../../lib/analytics';
 
 const ProjectInquiry: React.FC = () => {
   const [name, setName] = React.useState('');
@@ -118,6 +119,8 @@ const ProjectInquiry: React.FC = () => {
           hint: error.hint,
           code: error.code,
         });
+        // Track failed submission
+        trackFormSubmit('project_inquiry', false);
         alert(
           `Hubo un error al enviar tu consulta: ${error.message}\n\nPor favor intenta nuevamente o contáctanos directamente.`
         );
@@ -125,6 +128,9 @@ const ProjectInquiry: React.FC = () => {
       }
 
       console.log('Successfully saved to Supabase:', data);
+
+      // Track successful submission
+      trackFormSubmit('project_inquiry', true);
 
       // Si se guardó exitosamente, mostrar modal de selección de reunión
       setShowModal(true);
@@ -137,6 +143,8 @@ const ProjectInquiry: React.FC = () => {
       setDetails('');
     } catch (err) {
       console.error('Unexpected error:', err);
+      // Track unexpected error
+      trackFormSubmit('project_inquiry', false);
       alert('Hubo un error inesperado. Por favor intenta nuevamente.');
     } finally {
       setIsSubmitting(false);

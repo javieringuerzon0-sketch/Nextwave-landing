@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { sanitizeInput, isValidEmail } from '../../lib/sanitize';
+import { trackNewsletterSignup } from '../../lib/analytics';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -40,6 +41,8 @@ const Footer: React.FC = () => {
       if (response.ok) {
         setMessage('¡Suscrito exitosamente! 🎉');
         setEmail('');
+        // Track successful newsletter signup
+        trackNewsletterSignup(sanitizedEmail);
       } else {
         console.error('Error response:', data);
         setMessage(data.error || 'Hubo un error. Intenta de nuevo.');
