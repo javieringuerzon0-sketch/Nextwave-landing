@@ -1,5 +1,6 @@
 import React from 'react';
 import { supabase } from '../../lib/supabase';
+import { sanitizeInput, isValidEmail } from '../../lib/sanitize';
 
 const ProjectInquiry: React.FC = () => {
   const [name, setName] = React.useState('');
@@ -56,30 +57,59 @@ const ProjectInquiry: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validación de campos requeridos
+    if (!name.trim()) {
+      alert('Por favor ingresa tu nombre');
+      return;
+    }
+
+    if (!email.trim()) {
+      alert('Por favor ingresa tu email');
+      return;
+    }
+
+    // Validación de email
+    if (!isValidEmail(email)) {
+      alert('Por favor ingresa un email válido');
+      return;
+    }
+
+    if (selectedServices.length === 0) {
+      alert('Por favor selecciona al menos un servicio');
+      return;
+    }
+
+    if (selectedGoals.length === 0) {
+      alert('Por favor selecciona al menos un objetivo');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      console.log('Submitting to Supabase...', {
-        name,
-        email,
-        services: selectedServices,
+      // Sanitizar datos antes de enviar
+      const sanitizedData = {
+        name: sanitizeInput(name),
+        email: sanitizeInput(email),
+        services: selectedServices, // Arrays no necesitan sanitización
         goals: selectedGoals,
+        details: sanitizeInput(details),
+        metadata: {
+          timestamp: new Date().toISOString(),
+          user_agent: navigator.userAgent,
+        },
+      };
+
+      console.log('Submitting to Supabase...', {
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        services: sanitizedData.services,
+        goals: sanitizedData.goals,
       });
 
       // Guardar en Supabase
-      const { data, error } = await supabase.from('project_inquiries').insert([
-        {
-          name,
-          email,
-          services: selectedServices,
-          goals: selectedGoals,
-          details,
-          metadata: {
-            timestamp: new Date().toISOString(),
-            user_agent: navigator.userAgent,
-          },
-        },
-      ]);
+      const { data, error } = await supabase.from('project_inquiries').insert([sanitizedData]);
 
       if (error) {
         console.error('Supabase error details:', {

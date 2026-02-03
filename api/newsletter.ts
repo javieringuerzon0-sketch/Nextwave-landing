@@ -1,4 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { rateLimit, getIdentifier } from '../src/lib/rateLimit';
+
+// Rate limiter: 5 requests por minuto por IP
+const limiter = rateLimit({
+  interval: 60 * 1000, // 1 minuto
+  uniqueTokenPerInterval: 500, // Max 500 IPs diferentes en el store
+});
 
 // Permitir CORS
 export const config = {
@@ -22,6 +29,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Solo permitir POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Rate limiting: 5 requests por minuto
+  try {
+    const identifier = getIdentifier(req);
+    await limiter.check(identifier, 5);
+  } catch (error) {
+    console.log('Rate limit exceeded for:', getIdentifier(req));
+    return res.status(429).json({
+      error: 'Demasiados intentos. Por favor espera un minuto antes de intentar de nuevo.',
+    });
   }
 
   const { email } = req.body;

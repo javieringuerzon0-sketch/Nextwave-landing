@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import SEO from '../components/SEO';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Portfolio from '../components/sections/Portfolio';
@@ -69,28 +70,36 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <main className="relative">
-      <Hero />
+    <>
+      <SEO
+        title="NextWave IA - Desarrollo Web con Inteligencia Artificial en México"
+        description="Agencia líder en desarrollo web con IA en México. Creamos páginas web, aplicaciones móviles y estrategias de marketing digital. Especialistas en React, Next.js y soluciones con IA."
+        url="https://nextwave-ia-landing.vercel.app"
+        keywords="desarrollo web México, inteligencia artificial, páginas web, aplicaciones móviles, marketing digital, React, Next.js, diseño web, agencia digital, IA"
+      />
+      <main className="relative">
+        <Hero />
 
-      {/* FONDO UNICORN - Optimizado */}
-      <div
-        data-us-project="p7Ff6pfTrb5Gs59C7nLC"
-        className="fixed inset-0 w-full h-full pointer-events-none -z-10 bg-[#010a09]"
-        style={{
-          opacity: 0.7,
-          transform: 'translateZ(0)', // Forzamos aceleración hardware
-        }}
-      ></div>
+        {/* FONDO UNICORN - Optimizado */}
+        <div
+          data-us-project="p7Ff6pfTrb5Gs59C7nLC"
+          className="fixed inset-0 w-full h-full pointer-events-none -z-10 bg-[#010a09]"
+          style={{
+            opacity: 0.7,
+            transform: 'translateZ(0)', // Forzamos aceleración hardware
+          }}
+        ></div>
 
-      <div className="relative z-10 w-full">
-        <About />
-        <Portfolio />
-        <Testimonials />
-        <Pricing />
-        <TechStack />
-        <ProjectInquiry />
-      </div>
-    </main>
+        <div className="relative z-10 w-full">
+          <About />
+          <Portfolio />
+          <Testimonials />
+          <Pricing />
+          <TechStack />
+          <ProjectInquiry />
+        </div>
+      </main>
+    </>
   );
 };
 

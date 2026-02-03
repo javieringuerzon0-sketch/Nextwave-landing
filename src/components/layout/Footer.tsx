@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { sanitizeInput, isValidEmail } from '../../lib/sanitize';
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -8,7 +9,13 @@ const Footer: React.FC = () => {
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email || !email.includes('@')) {
+    // Validación mejorada de email
+    if (!email.trim()) {
+      setMessage('Por favor ingresa tu email');
+      return;
+    }
+
+    if (!isValidEmail(email)) {
       setMessage('Por favor ingresa un email válido');
       return;
     }
@@ -17,12 +24,15 @@ const Footer: React.FC = () => {
     setMessage('');
 
     try {
+      // Sanitizar email antes de enviar
+      const sanitizedEmail = sanitizeInput(email.trim().toLowerCase());
+
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: sanitizedEmail }),
       });
 
       const data = await response.json();

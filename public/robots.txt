@@ -1,0 +1,10 @@
+# NextWave IA - Robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nextwave-ia-landing.vercel.app/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
