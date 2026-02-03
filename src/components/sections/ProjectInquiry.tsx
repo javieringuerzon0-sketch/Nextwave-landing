@@ -8,6 +8,7 @@ const ProjectInquiry: React.FC = () => {
   const [selectedGoals, setSelectedGoals] = React.useState<string[]>([]);
   const [details, setDetails] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   const toggleService = React.useCallback((service: string) => {
     setSelectedServices(prev =>
@@ -31,6 +32,15 @@ const ProjectInquiry: React.FC = () => {
 
   const handleDetailsChange = React.useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetails(e.target.value);
+  }, []);
+
+  const handleMeetingSelect = React.useCallback((url: string) => {
+    window.open(url, '_blank');
+    setShowModal(false);
+  }, []);
+
+  const handleCloseModal = React.useCallback(() => {
+    setShowModal(false);
   }, []);
 
   const goalsOptions = React.useMemo(
@@ -86,8 +96,8 @@ const ProjectInquiry: React.FC = () => {
 
       console.log('Successfully saved to Supabase:', data);
 
-      // Si se guardó exitosamente, redirigir a Calendly
-      window.open('https://calendly.com/app/scheduling/meeting_types/user/me', '_blank');
+      // Si se guardó exitosamente, mostrar modal de selección de reunión
+      setShowModal(true);
 
       // Limpiar formulario
       setName('');
@@ -504,6 +514,218 @@ const ProjectInquiry: React.FC = () => {
           </div>
         </form>
       </div>
+
+      {/* Modal de Selección de Reunión */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            onClick={handleCloseModal}
+          />
+
+          {/* Modal Content */}
+          <div className="relative w-full max-w-2xl rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/95 to-black/95 p-8 shadow-2xl animate-slideUp">
+            {/* Close Button */}
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all duration-200 group"
+            >
+              <svg
+                className="w-4 h-4 text-white/60 group-hover:text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Success Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 flex items-center justify-center">
+                <svg
+                  className="w-8 h-8 text-green-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Header */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                ¡Consulta Recibida!
+              </h2>
+              <p className="text-sm text-white/60">
+                Ahora agenda una reunión para discutir tu proyecto en detalle
+              </p>
+            </div>
+
+            {/* Meeting Options */}
+            <div className="space-y-3 mb-6">
+              {/* 15 min - Diagnóstico Rápido */}
+              <button
+                onClick={() =>
+                  handleMeetingSelect(
+                    'https://cal.com/javier-inguerzon-infante-hjcp55/15min-diagnostico-rapido'
+                  )
+                }
+                className="w-full group relative flex items-center gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all duration-300"
+              >
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-cyan-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <div className="flex-1 text-left">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-base font-semibold text-white">Diagnóstico Rápido</span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                      15 min
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50">Revisión inicial de tu idea o proyecto</p>
+                </div>
+                <svg
+                  className="w-5 h-5 text-white/40 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* 30 min - Inicio del Proyecto Web */}
+              <button
+                onClick={() =>
+                  handleMeetingSelect(
+                    'https://cal.com/javier-inguerzon-infante-hjcp55/30min-inicio-del-proyecto-web'
+                  )
+                }
+                className="w-full group relative flex items-center gap-4 p-5 rounded-2xl bg-white/[0.02] border border-amber-500/30 hover:border-amber-500/50 hover:bg-amber-500/5 transition-all duration-300"
+              >
+                {/* Recommended Badge */}
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2">
+                  <span className="text-[9px] px-2 py-0.5 rounded-full bg-amber-500 text-black font-bold uppercase tracking-wider">
+                    Recomendado
+                  </span>
+                </div>
+
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-amber-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    />
+                  </svg>
+                </div>
+                <div className="flex-1 text-left">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-base font-semibold text-white">
+                      Inicio del Proyecto Web
+                    </span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                      30 min
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50">Planificación completa de tu sitio web</p>
+                </div>
+                <svg
+                  className="w-5 h-5 text-white/40 group-hover:text-amber-400 group-hover:translate-x-1 transition-all"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* 60 min - Proyectos App Web/Móvil/Marketing */}
+              <button
+                onClick={() =>
+                  handleMeetingSelect(
+                    'https://cal.com/javier-inguerzon-infante-hjcp55/60-minutos-proyectos-app-web-movil-marketing'
+                  )
+                }
+                className="w-full group relative flex items-center gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all duration-300"
+              >
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-purple-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                    />
+                  </svg>
+                </div>
+                <div className="flex-1 text-left">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-base font-semibold text-white">
+                      App Web/Móvil/Marketing
+                    </span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                      60 min
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/50">Análisis profundo de proyectos complejos</p>
+                </div>
+                <svg
+                  className="w-5 h-5 text-white/40 group-hover:text-purple-400 group-hover:translate-x-1 transition-all"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Footer */}
+            <div className="text-center pt-6 border-t border-white/5">
+              <button
+                onClick={handleCloseModal}
+                className="text-sm text-white/50 hover:text-white/80 transition-colors"
+              >
+                Agendar más tarde
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style>{`
         @keyframes pulse-glow {
           0%, 100% {
@@ -578,6 +800,34 @@ const ProjectInquiry: React.FC = () => {
         .inquiry-gradient-btn:disabled::before {
           animation: none;
           opacity: 0.3;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        .animate-slideUp {
+          animation: slideUp 0.4s ease-out;
         }
       `}</style>
     </section>

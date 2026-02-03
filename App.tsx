@@ -5,6 +5,7 @@ import Navbar from './src/components/layout/Navbar';
 import Footer from './src/components/layout/Footer';
 import HomePage from './src/pages/HomePage';
 import AboutPage from './src/pages/AboutPage';
+import PlanesPage from './src/pages/PlanesPage';
 
 // Scroll manager to handle hash navigation at router level
 const ScrollManager: React.FC = () => {
@@ -42,6 +43,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/planes" element={<PlanesPage />} />
         </Routes>
 
         <Footer />

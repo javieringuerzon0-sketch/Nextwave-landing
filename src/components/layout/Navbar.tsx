@@ -78,6 +78,12 @@ const Navbar: React.FC = () => {
           >
             Herramientas
           </a>
+          <Link
+            to="/planes"
+            className="text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+          >
+            Planes
+          </Link>
         </div>
 
         <button
@@ -183,6 +189,7 @@ const Navbar: React.FC = () => {
             { href: '/#testimonials', label: 'Casos', icon: '★' },
             { href: '/#pricing', label: 'Precios', icon: '◆' },
             { href: '/#techstack', label: 'Herramientas', icon: '◉' },
+            { href: '/planes', label: 'Planes', icon: '💎' },
           ].map(item => (
             <a
               key={item.href}

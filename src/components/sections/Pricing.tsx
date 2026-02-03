@@ -17,6 +17,7 @@ const Pricing: React.FC = () => {
       ],
       featured: false,
       accentColor: 'rgba(92,225,230,0.1)',
+      stripeUrl: 'https://buy.stripe.com/test_4gM3cv04R7vg4sXdGE83C06',
     },
     {
       id: '3',
@@ -34,6 +35,7 @@ const Pricing: React.FC = () => {
       ],
       featured: false,
       accentColor: 'rgba(129,140,248,0.1)',
+      stripeUrl: 'https://buy.stripe.com/test_eVqeVd2cZ3f08Jd5a883C07',
     },
     {
       id: '8',
@@ -53,6 +55,7 @@ const Pricing: React.FC = () => {
       ],
       featured: true,
       accentColor: 'rgba(251,191,36,0.15)',
+      stripeUrl: 'https://buy.stripe.com/test_dRm6oH5pb6rc7F9fOM83C08',
     },
   ];
 
@@ -158,15 +161,16 @@ const Pricing: React.FC = () => {
               </ul>
 
               <div className="space-y-5">
-                <button
-                  className={`w-full py-4 rounded-xl text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 ${
+                <a
+                  href={plan.stripeUrl}
+                  className={`block w-full py-4 rounded-xl text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 text-center ${
                     plan.featured
                       ? 'bg-amber-400 text-black hover:bg-amber-300 shadow-lg shadow-amber-500/20'
                       : 'bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20'
                   }`}
                 >
                   Comenzar ahora
-                </button>
+                </a>
                 <div
                   className={`text-[10px] text-center font-bold tracking-widest uppercase ${
                     plan.featured ? 'text-amber-500/40' : 'text-white/20'
