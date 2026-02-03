@@ -206,7 +206,7 @@ const Footer: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="absolute right-2 top-1.5 bottom-1.5 px-4 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute right-2 top-2 bottom-2 px-3 bg-white text-black text-[9px] font-bold uppercase tracking-wider rounded-lg hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? '...' : 'Unirse'}
                 </button>

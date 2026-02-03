@@ -44,6 +44,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
+    console.log('Intentando suscribir:', email, 'a lista #3');
+
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {
@@ -58,12 +60,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     const data = await response.json();
+    console.log('Respuesta de Brevo:', { status: response.status, data });
 
     if (!response.ok) {
-      console.error('Error de Brevo:', data);
+      console.error('Error de Brevo:', {
+        status: response.status,
+        code: data.code,
+        message: data.message,
+      });
 
       // Si el contacto ya existe, considerarlo éxito
       if (data.code === 'duplicate_parameter') {
+        console.log('Contacto duplicado, retornando éxito');
         return res.status(200).json({
           success: true,
           message: 'Ya estás suscrito',
@@ -75,14 +83,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
+    console.log('Suscripción exitosa');
     return res.status(200).json({
       success: true,
       message: 'Suscrito exitosamente',
     });
-  } catch (error) {
-    console.error('Error en newsletter:', error);
+  } catch (error: any) {
+    console.error('Error en newsletter:', {
+      message: error.message,
+      stack: error.stack,
+    });
     return res.status(500).json({
-      error: 'Error del servidor',
+      error: 'Error del servidor: ' + error.message,
     });
   }
 }
