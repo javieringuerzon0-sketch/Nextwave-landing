@@ -1,6 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Footer: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !email.includes('@')) {
+      setMessage('Por favor ingresa un email válido');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setMessage('');
+
+    try {
+      // Aquí va la integración con Brevo
+      // Por ahora guardamos en Supabase
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setMessage('¡Suscrito exitosamente! 🎉');
+        setEmail('');
+      } else {
+        setMessage('Hubo un error. Intenta de nuevo.');
+      }
+    } catch (error) {
+      console.error('Newsletter error:', error);
+      setMessage('Hubo un error. Intenta de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="bg-transparent py-20 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -62,17 +100,6 @@ const Footer: React.FC = () => {
                 </div>
                 <span className="font-medium">+52 612 289 3294</span>
               </a>
-            </div>
-
-            <div className="flex gap-4">
-              {['ln', 'tw', 'ig', 'gh'].map(i => (
-                <div
-                  key={i}
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-white hover:text-white transition-all cursor-pointer"
-                >
-                  <span className="text-[10px] font-bold uppercase">{i}</span>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -163,16 +190,32 @@ const Footer: React.FC = () => {
             <p className="text-xs text-white/40 leading-relaxed">
               Suscríbete para recibir tendencias semanales sobre IA en el mercado mexicano.
             </p>
-            <div className="relative">
-              <input
-                type="email"
-                placeholder="tu@email.com"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:ring-1 focus:ring-white/20"
-              />
-              <button className="absolute right-2 top-1.5 bottom-1.5 px-4 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-lg">
-                Unirse
-              </button>
-            </div>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+              <div className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="tu@email.com"
+                  disabled={isSubmitting}
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 disabled:opacity-50"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="absolute right-2 top-1.5 bottom-1.5 px-4 bg-white text-black text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? '...' : 'Unirse'}
+                </button>
+              </div>
+              {message && (
+                <p
+                  className={`text-xs ${message.includes('exitosamente') ? 'text-green-400' : 'text-red-400'}`}
+                >
+                  {message}
+                </p>
+              )}
+            </form>
           </div>
         </div>
 
