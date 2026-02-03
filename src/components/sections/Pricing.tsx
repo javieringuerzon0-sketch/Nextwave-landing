@@ -55,7 +55,7 @@ const Pricing: React.FC = () => {
       ],
       featured: true,
       accentColor: 'rgba(251,191,36,0.15)',
-      stripeUrl: 'https://buy.stripe.com/test_dRm6oH5pb6rc7F9fOM83C08',
+      stripeUrl: 'https://buy.stripe.com/test_5kQ28rbNzeXI8Jd32083C09',
     },
   ];
 
