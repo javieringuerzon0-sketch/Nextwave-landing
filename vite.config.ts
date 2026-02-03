@@ -14,6 +14,23 @@ export default defineConfig(({ mode }) => {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
       },
+      build: {
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              // Vendor chunks for better caching
+              'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+              'ui-vendor': ['lucide-react', 'react-helmet-async'],
+              'analytics': ['@vercel/analytics', '@vercel/speed-insights', 'web-vitals'],
+              'monitoring': ['@sentry/react'],
+              'supabase': ['@supabase/supabase-js'],
+              'utils': ['dompurify'],
+            },
+          },
+        },
+        // Increase chunk size warning limit
+        chunkSizeWarningLimit: 600,
+      },
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),
