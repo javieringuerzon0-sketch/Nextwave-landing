@@ -1,4 +1,4 @@
-import { onCLS, onFID, onFCP, onLCP, onTTFB, onINP, Metric } from 'web-vitals';
+import { onCLS, onFCP, onLCP, onTTFB, onINP, Metric } from 'web-vitals';
 
 /**
  * Google Analytics 4 - Tracking
@@ -126,9 +126,8 @@ function sendToAnalytics(metric: Metric) {
 export function initWebVitals() {
   // Core Web Vitals
   onCLS(sendToAnalytics); // Cumulative Layout Shift
-  onFID(sendToAnalytics); // First Input Delay (deprecated, usar INP)
   onLCP(sendToAnalytics); // Largest Contentful Paint
-  onINP(sendToAnalytics); // Interaction to Next Paint (nuevo)
+  onINP(sendToAnalytics); // Interaction to Next Paint (reemplaza FID)
 
   // Other metrics
   onFCP(sendToAnalytics); // First Contentful Paint
