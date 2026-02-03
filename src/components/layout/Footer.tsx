@@ -17,23 +17,26 @@ const Footer: React.FC = () => {
     setMessage('');
 
     try {
-      // Aquí va la integración con Brevo
-      // Por ahora guardamos en Supabase
       const response = await fetch('/api/newsletter', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ email }),
       });
+
+      const data = await response.json();
 
       if (response.ok) {
         setMessage('¡Suscrito exitosamente! 🎉');
         setEmail('');
       } else {
-        setMessage('Hubo un error. Intenta de nuevo.');
+        console.error('Error response:', data);
+        setMessage(data.error || 'Hubo un error. Intenta de nuevo.');
       }
     } catch (error) {
       console.error('Newsletter error:', error);
-      setMessage('Hubo un error. Intenta de nuevo.');
+      setMessage('Error de conexión. Intenta de nuevo.');
     } finally {
       setIsSubmitting(false);
     }
