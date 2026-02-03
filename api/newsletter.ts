@@ -52,7 +52,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
       body: JSON.stringify({
         email: email,
-        listIds: [2], // ID de tu lista en Brevo (cambiar después)
+        listIds: [3], // ID de lista de Brevo: NextWave Newsletter
         updateEnabled: true,
       }),
     });
