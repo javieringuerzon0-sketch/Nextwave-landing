@@ -53,8 +53,9 @@ const SEO: React.FC<SEOProps> = ({
       <link rel="canonical" href={url} />
 
       {/* Favicon */}
-      <link rel="icon" type="image/png" href="/favicon.png" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
       {/* Theme Color */}
       <meta name="theme-color" content="#000000" />
