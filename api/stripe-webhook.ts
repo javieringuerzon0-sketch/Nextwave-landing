@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js';
 
 // Inicializar Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-12-18.acacia',
+  apiVersion: '2026-01-28.clover',
 });
 
 // Inicializar Supabase
@@ -55,11 +55,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const rawBody = await buffer(req);
 
     // Verificar la firma del webhook
-    event = stripe.webhooks.constructEvent(
-      rawBody,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
+    event = stripe.webhooks.constructEvent(rawBody, sig, process.env.STRIPE_WEBHOOK_SECRET);
 
     console.log('✅ Webhook signature verified:', event.type);
   } catch (err: any) {
