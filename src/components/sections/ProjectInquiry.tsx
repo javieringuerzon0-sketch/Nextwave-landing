@@ -102,23 +102,10 @@ const ProjectInquiry: React.FC = () => {
         },
       };
 
-      console.log('Submitting to Supabase...', {
-        name: sanitizedData.name,
-        email: sanitizedData.email,
-        services: sanitizedData.services,
-        goals: sanitizedData.goals,
-      });
-
       // Guardar en Supabase
       const { data, error } = await supabase.from('project_inquiries').insert([sanitizedData]);
 
       if (error) {
-        console.error('Supabase error details:', {
-          message: error.message,
-          details: error.details,
-          hint: error.hint,
-          code: error.code,
-        });
         // Track failed submission
         trackFormSubmit('project_inquiry', false);
         alert(
@@ -126,8 +113,6 @@ const ProjectInquiry: React.FC = () => {
         );
         return;
       }
-
-      console.log('Successfully saved to Supabase:', data);
 
       // Track successful submission
       trackFormSubmit('project_inquiry', true);
@@ -142,7 +127,6 @@ const ProjectInquiry: React.FC = () => {
       setSelectedGoals([]);
       setDetails('');
     } catch (err) {
-      console.error('Unexpected error:', err);
       // Track unexpected error
       trackFormSubmit('project_inquiry', false);
       alert('Hubo un error inesperado. Por favor intenta nuevamente.');

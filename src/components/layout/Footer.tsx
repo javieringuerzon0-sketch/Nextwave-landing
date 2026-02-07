@@ -44,11 +44,9 @@ const Footer: React.FC = () => {
         // Track successful newsletter signup
         trackNewsletterSignup(sanitizedEmail);
       } else {
-        console.error('Error response:', data);
         setMessage(data.error || 'Hubo un error. Intenta de nuevo.');
       }
-    } catch (error) {
-      console.error('Newsletter error:', error);
+    } catch {
       setMessage('Error de conexión. Intenta de nuevo.');
     } finally {
       setIsSubmitting(false);
@@ -63,7 +61,8 @@ const Footer: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
     // Intentar abrir el mailto después de copiar para que si tienen app, se abra
     // pero si falla, al menos ya tienen el texto copiado.
-    window.location.href = 'mailto:contacto@nextwaveia.com?subject=Contacto%20desde%20NextWave%20IA';
+    window.location.href =
+      'mailto:contacto@nextwaveia.com?subject=Contacto%20desde%20NextWave%20IA';
   };
 
   return (
