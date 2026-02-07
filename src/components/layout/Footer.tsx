@@ -55,6 +55,17 @@ const Footer: React.FC = () => {
     }
   };
 
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText('contacto@nextwaveia.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    // Intentar abrir el mailto después de copiar para que si tienen app, se abra
+    // pero si falla, al menos ya tienen el texto copiado.
+    window.location.href = 'mailto:contacto@nextwaveia.com?subject=Contacto%20desde%20NextWave%20IA';
+  };
+
   return (
     <footer className="bg-transparent py-20 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -81,27 +92,42 @@ const Footer: React.FC = () => {
 
             {/* Contact Info */}
             <div className="space-y-3">
-              <a
-                href="mailto:contacto@nextwaveia.com?subject=Contacto%20desde%20NextWave%20IA"
-                className="group flex items-center gap-3 text-sm text-white/50 hover:text-white transition-all duration-300"
-              >
-                <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <span className="font-medium">contacto@nextwaveia.com</span>
-              </a>
+              <div className="relative inline-block w-full">
+                <button
+                  onClick={copyToClipboard}
+                  className="group flex items-center gap-3 text-sm text-white/50 hover:text-white transition-all duration-300 w-full text-left"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300 relative">
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-medium">contacto@nextwaveia.com</span>
+                    <span className="text-[10px] text-white/30 group-hover:text-sky-400 transition-colors">
+                      {copied ? '¡Email Copiado!' : 'Click para copiar o enviar'}
+                    </span>
+                  </div>
+                </button>
+
+                {/* Feedback Tooltip con estado de React */}
+                {copied && (
+                  <div className="absolute -top-10 left-9 px-3 py-1.5 bg-sky-500 text-white text-[10px] font-bold rounded-lg shadow-xl shadow-sky-500/20 animate-in fade-in zoom-in slide-in-from-bottom-2 duration-300 uppercase tracking-wider z-50">
+                    Copiado ✓
+                    <div className="absolute -bottom-1 left-2 w-2 h-2 bg-sky-500 rotate-45"></div>
+                  </div>
+                )}
+              </div>
 
               <a
                 href="https://wa.me/526122893294"
