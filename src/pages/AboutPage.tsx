@@ -42,13 +42,13 @@ const AboutPage: React.FC = () => {
     {
       name: 'Javier Inguerzon',
       role: 'Co-Fundador & Full-Stack Developer',
-      image: '/assets/team/javier.jpg',
+      image: '/assets/team/javier-inguerzon.jpg',
       specialties: ['Frontend Architecture', 'UI/UX Design', 'React Ecosystem'],
     },
     {
       name: 'Alejandro Suarez',
       role: 'Co-Fundador & Full-Stack Developer',
-      image: '/assets/team/alejandro.jpg',
+      image: '/assets/team/alejandro-suarez.jpg',
       specialties: ['Backend Systems', 'API Design', 'Database Optimization'],
     },
   ];

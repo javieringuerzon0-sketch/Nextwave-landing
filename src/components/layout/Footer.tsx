@@ -61,8 +61,6 @@ const Footer: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
     // Intentar abrir el mailto después de copiar para que si tienen app, se abra
     // pero si falla, al menos ya tienen el texto copiado.
-    window.location.href =
-      'mailto:contacto@nextwaveia.com?subject=Contacto%20desde%20NextWave%20IA';
   };
 
   return (
