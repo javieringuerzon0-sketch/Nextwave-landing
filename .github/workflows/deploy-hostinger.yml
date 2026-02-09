@@ -31,12 +31,12 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/
+          server-dir: /home/u819742742/domains/nextwaveia.com/public_html/
           local-dir: ./dist/
           protocol: ftp
           port: 21
-          security: loose              # Añadido: permite conexiones FTP básicas
-          log-level: verbose           # Añadido: más logs para debugging
+          security: loose
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**
