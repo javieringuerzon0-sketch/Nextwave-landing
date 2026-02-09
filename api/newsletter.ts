@@ -77,7 +77,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
       const text = await response.text();
       data = text ? JSON.parse(text) : {};
-    } catch (parseError) {
+    } catch {
       return res.status(500).json({
         error: 'Respuesta inválida de Brevo. Verifica tu API key.',
       });
