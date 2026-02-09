@@ -35,8 +35,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const identifier = getIdentifier(req);
     await limiter.check(identifier, 5);
-  } catch (error) {
-    console.log('Rate limit exceeded for:', getIdentifier(req));
+  } catch {
     return res.status(429).json({
       error: 'Demasiados intentos. Por favor espera un minuto antes de intentar de nuevo.',
     });
@@ -55,18 +54,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Si no hay API key, guardar en consola (modo desarrollo)
     if (!BREVO_API_KEY) {
-      console.log('Newsletter signup (sin Brevo configurado):', email);
       return res.status(200).json({
         success: true,
         message: 'Suscrito exitosamente (modo desarrollo)',
       });
     }
-
-    console.log('Intentando suscribir:', email, 'a lista #3');
-    console.log(
-      'API Key presente:',
-      BREVO_API_KEY ? 'Sí (primeros 10 chars: ' + BREVO_API_KEY.substring(0, 10) + '...)' : 'No'
-    );
 
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
@@ -81,36 +73,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }),
     });
 
-    console.log('Status de respuesta:', response.status, response.statusText);
-
-    // Verificar si la respuesta es JSON
-    const contentType = response.headers.get('content-type');
-    console.log('Content-Type:', contentType);
-
     let data;
     try {
       const text = await response.text();
-      console.log('Respuesta raw:', text);
       data = text ? JSON.parse(text) : {};
-    } catch (parseError: any) {
-      console.error('Error parseando JSON:', parseError.message);
+    } catch (parseError) {
       return res.status(500).json({
         error: 'Respuesta inválida de Brevo. Verifica tu API key.',
       });
     }
 
-    console.log('Respuesta de Brevo:', { status: response.status, data });
-
     if (!response.ok) {
-      console.error('Error de Brevo:', {
-        status: response.status,
-        code: data.code,
-        message: data.message,
-      });
-
       // Si el contacto ya existe, considerarlo éxito
       if (data.code === 'duplicate_parameter') {
-        console.log('Contacto duplicado, retornando éxito');
         return res.status(200).json({
           success: true,
           message: 'Ya estás suscrito',
@@ -122,18 +97,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    console.log('Suscripción exitosa');
     return res.status(200).json({
       success: true,
       message: 'Suscrito exitosamente',
     });
-  } catch (error: any) {
-    console.error('Error en newsletter:', {
-      message: error.message,
-      stack: error.stack,
-    });
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
     return res.status(500).json({
-      error: 'Error del servidor: ' + error.message,
+      error: 'Error del servidor: ' + errorMessage,
     });
   }
 }
