@@ -7,6 +7,7 @@ Landing page profesional para NextWave IA, agencia de desarrollo web con intelig
 ## 🚀 Features
 
 ### Core Functionality
+
 - ✅ Página principal con secciones: Hero, About, Portfolio, Testimonials, Pricing, TechStack
 - ✅ Página "Sobre Nosotros" con información del equipo
 - ✅ Página "Planes" con servicios y precios
@@ -16,12 +17,14 @@ Landing page profesional para NextWave IA, agencia de desarrollo web con intelig
 - ✅ Pagos con Stripe
 
 ### Performance & Optimization
+
 - ✅ Code splitting con React lazy loading
 - ✅ Bundle size optimizado (205 KB main + chunks lazy-loaded)
 - ✅ Vercel Speed Insights integrado
 - ✅ Web Vitals monitoring
 
 ### Security
+
 - ✅ XSS protection con DOMPurify
 - ✅ Rate limiting en API (5 req/min)
 - ✅ Email validation (RFC 5322)
@@ -29,6 +32,7 @@ Landing page profesional para NextWave IA, agencia de desarrollo web con intelig
 - ✅ Input sanitization en todos los formularios
 
 ### Analytics & Monitoring
+
 - ✅ Google Analytics 4
 - ✅ Microsoft Clarity (heatmaps)
 - ✅ Sentry error tracking
@@ -36,6 +40,7 @@ Landing page profesional para NextWave IA, agencia de desarrollo web con intelig
 - ✅ Event tracking personalizado
 
 ### DevOps & CI/CD
+
 - ✅ GitHub Actions workflows
 - ✅ Automated testing (Vitest)
 - ✅ Automated deployment a Vercel
@@ -43,6 +48,7 @@ Landing page profesional para NextWave IA, agencia de desarrollo web con intelig
 - ✅ Dependabot para updates
 
 ### SEO
+
 - ✅ Meta tags dinámicos
 - ✅ Open Graph + Twitter Cards
 - ✅ Sitemap.xml + Robots.txt
